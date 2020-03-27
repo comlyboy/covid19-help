@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
       .subscribe(lgas => {
         this.LGAs = lgas;
       });
-
   }
 
 

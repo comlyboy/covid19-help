@@ -28,7 +28,7 @@ export class StateService {
 
   getStateLGA(stateId: string) {
     return this.http
-      .get<IState[]>(`${this.API_URL}states/${stateId}/lgas`);
+      .get<any[]>(`${this.API_URL}states/${stateId}/lgas`);
   }
 
 
