@@ -1,1 +1,216 @@
-<p>home works!</p>
+<mat-toolbar class="my-toolbar sticky-top bg-white container-fluid">
+
+
+
+
+</mat-toolbar>
+
+
+<div class="container mt-5">
+    <div class="card handy-card">
+        <div class="card-header bg-transparent">
+            <div class="h5 mb-0 text-handy">New Case</div>
+        </div>
+        <div class="card-body px-5">
+
+            <form (submit)="onSubmitCase(caseForm)" #caseForm="ngForm">
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="h6 text-left mt-4 mb-1">Firstname</div>
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend bg-light" *ngIf="firstname.touched && firstname.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <div class="input-group-prepend bg-light" *ngIf="firstname.touched && firstname.invalid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-danger">clear</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputFirstname" ngModel
+                                minlength="3" autocomplete="off" placeholder="Firstname..." #firstname="ngModel"
+                                required>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="firstname.touched && !firstname.valid">
+                            <div *ngIf="firstname.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="firstname.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="h6 text-left mt-4 mb-1">Surname</div>
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend bg-light" *ngIf="surname.touched && surname.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <div class="input-group-prepend bg-light" *ngIf="surname.touched && surname.invalid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-danger">clear</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputSurname" ngModel
+                                minlength="3" autocomplete="off" placeholder="Surname..." #surname="ngModel" required>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="surname.touched && !surname.valid">
+                            <div *ngIf="surname.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="surname.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="h6 text-left mt-4 mb-1">Phone number</div>
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend bg-light" *ngIf="phonenumber.touched && phonenumber.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <div class="input-group-prepend bg-light"
+                                *ngIf="phonenumber.touched && phonenumber.invalid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-danger">clear</mat-icon>
+                                </span>
+                            </div>
+                            <input type="number" class="form-control form-control-lg" name="inputPhoneNumber" ngModel
+                                required minlength="7" autocomplete="off" placeholder="Phone Number..."
+                                #phonenumber="ngModel">
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="phonenumber.touched && !phonenumber.valid">
+                            <div *ngIf="phonenumber.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="phonenumber.errors.minlength">
+                                Minimum 7 numbers needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="h6 text-left mt-4 mb-1">State</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="stateName.touched && stateName.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <select class="form-control form-control-lg" name="inputStateName" ngModel required
+                                #stateName="ngModel">
+                                <option selected value="">Select state...</option>
+                                <option *ngFor="let state of states" [value]="state._id">
+                                    {{  state.name | titlecase }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="stateName.touched && !stateName.valid">
+                            <div *ngIf="stateName.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="stateName.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="h6 text-left mt-4 mb-1">Local Government Area</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="LGA.touched && LGA.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <select class="form-control form-control-lg" name="inputLGA" ngModel required
+                                #LGA="ngModel">
+                                <option selected value="">Select LGA...</option>
+                                <option *ngFor="let state of states" [value]="state._id">
+                                    {{  state.name | titlecase }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="LGA.touched && !LGA.valid">
+                            <div *ngIf="LGA.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="LGA.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="h6 text-left mt-4 mb-1">Date of Birth</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="DOB.touched && DOB.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <input type="date" class="form-control form-control-lg" name="inputDOB" ngModel required
+                                autocomplete="off" placeholder="Date of Birth..." #DOB="ngModel" required>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="DOB.touched && !DOB.valid">
+                            <div *ngIf="DOB.errors.required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Present address</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="address.touched && address.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <textarea class="form-control" rows="3" name="inputAddress" ngModel required
+                                autocomplete="off" placeholder="address..." #address="ngModel" required></textarea>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
+                            <div *ngIf="address.errors.required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="h6 text-left mt-4 mb-1">Symptoms</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="symptoms.touched && symptoms.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-success">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <textarea class="form-control" rows="3" name="inputSymptoms" ngModel required
+                                autocomplete="off" placeholder="Describe every symptoms you are having..." #symptoms="ngModel"
+                                required></textarea>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="symptoms.touched && !symptoms.valid">
+                            <div *ngIf="symptoms.errors.required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mb-2">
+                    <button mat-raised-button type="submit" class="btn btn-handy btn-lg mt-5 ml-3 py-1"
+                        [disabled]="!caseForm.valid">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
