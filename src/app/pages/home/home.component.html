@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <div class="card handy-card">
         <div class="card-header bg-transparent">
-            <div class="h5 mb-0 text-handy">New Case</div>
+            <div class="h5 mb-0 text-handy">Register Case</div>
         </div>
         <div class="card-body px-5">
 
@@ -105,8 +105,8 @@
                                     <mat-icon class="text-success">done_all</mat-icon>
                                 </span>
                             </div>
-                            <select (change)="onSelectState($event.target.value)" class="form-control form-control-lg" name="inputStateName" ngModel required
-                                #stateName="ngModel">
+                            <select (change)="onSelectState($event.target.value)" class="form-control form-control-lg"
+                                name="inputStateName" ngModel required #stateName="ngModel">
                                 <option selected value="">Select state...</option>
                                 <option *ngFor="let state of states" [value]="state.alias">
                                     {{  state.state | titlecase }}
@@ -131,8 +131,8 @@
                                     <mat-icon class="text-success">done_all</mat-icon>
                                 </span>
                             </div>
-                            <select class="form-control form-control-lg" name="inputLGA" ngModel required
-                                #LGA="ngModel">
+                            <select [disabled]="!stateName.valid" class="form-control form-control-lg" name="inputLGA"
+                                ngModel required #LGA="ngModel">
                                 <option selected value="">Select LGA...</option>
                                 <option *ngFor="let lga of LGAs" [value]="lga">
                                     {{  lga | titlecase }}
@@ -206,7 +206,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end mb-2">
-                    <button mat-raised-button type="submit" class="btn btn-iight btn-lg mt-5 ml-3 py-1">Submit</button>
+                    <button mat-raised-button type="submit" class="btn btn-success btn-lg mt-5 ml-3 py-1">Submit</button>
                 </div>
 
             </form>
