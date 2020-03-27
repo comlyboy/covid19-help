@@ -105,11 +105,11 @@
                                     <mat-icon class="text-success">done_all</mat-icon>
                                 </span>
                             </div>
-                            <select class="form-control form-control-lg" name="inputStateName" ngModel required
+                            <select (change)="onSelectState($event.target.value)" class="form-control form-control-lg" name="inputStateName" ngModel required
                                 #stateName="ngModel">
                                 <option selected value="">Select state...</option>
-                                <option *ngFor="let state of states" [value]="state._id">
-                                    {{  state.name | titlecase }}
+                                <option *ngFor="let state of states" [value]="state.alias">
+                                    {{  state.state | titlecase }}
                                 </option>
                             </select>
                         </div>
@@ -134,8 +134,8 @@
                             <select class="form-control form-control-lg" name="inputLGA" ngModel required
                                 #LGA="ngModel">
                                 <option selected value="">Select LGA...</option>
-                                <option *ngFor="let state of states" [value]="state._id">
-                                    {{  state.name | titlecase }}
+                                <option *ngFor="let lga of LGAs" [value]="lga">
+                                    {{  lga | titlecase }}
                                 </option>
                             </select>
                         </div>
@@ -194,8 +194,8 @@
                                 </span>
                             </div>
                             <textarea class="form-control" rows="3" name="inputSymptoms" ngModel required
-                                autocomplete="off" placeholder="Describe every symptoms you are having..." #symptoms="ngModel"
-                                required></textarea>
+                                autocomplete="off" placeholder="Describe every symptoms you are having..."
+                                #symptoms="ngModel" required></textarea>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="symptoms.touched && !symptoms.valid">
                             <div *ngIf="symptoms.errors.required">
@@ -206,8 +206,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end mb-2">
-                    <button mat-raised-button type="submit" class="btn btn-handy btn-lg mt-5 ml-3 py-1"
-                        [disabled]="!caseForm.valid">Submit</button>
+                    <button mat-raised-button type="submit" class="btn btn-iight btn-lg mt-5 ml-3 py-1">Submit</button>
                 </div>
 
             </form>

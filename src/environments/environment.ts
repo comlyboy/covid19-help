@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: "http://api.facts.ng/v1/states"
+  API_URL: "http://locationsng-api.herokuapp.com/api/v1/"
+  
 };
 
 /*

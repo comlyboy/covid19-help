@@ -1,7 +1,5 @@
 export interface IState {
-    id?: string,
-    name: string,
-    region?: string,
-    capital?: string,
-    lgas: string[]
+    state: string,
+    alias: string,
+    lgas?: string[]
 }

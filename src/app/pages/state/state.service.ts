@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Subject } from 'rxjs';
 
+
 import { environment } from 'src/environments/environment';
 import { IState } from 'src/app/interfaces/state';
 
@@ -19,24 +20,17 @@ export class StateService {
   ) { }
 
 
-  private StatesUpdated = new Subject<{
-    states: IState[];
-  }>();
-
-  getStatesUpdateListener() {
-    return this.StatesUpdated.asObservable();
-  }
 
   getStates() {
-    this.http
-      .get<{ states: IState[] }>(
-        this.API_URL)
-      .subscribe(stateData => {
-        console.log(stateData)
-        this.states = stateData.states;
-        this.StatesUpdated.next({
-          states: [...this.states]
-        });
-      });
+    return this.http
+      .get<IState[]>(`${this.API_URL}lgas`);
   }
+
+  getStateLGA(stateId: string) {
+    return this.http
+      .get<IState[]>(`${this.API_URL}states/${stateId}/lgas`);
+  }
+
+
+
 }
