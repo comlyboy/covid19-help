@@ -1,1 +1,160 @@
-<p>auth works!</p>
+<div class="container-fluid contain p-5 d-flex justify-content-center">
+
+    <div class="card mt-5 handy-card text-center" style="width: 30rem;">
+        <div class="card-header h5 text-green bg-transparent">Log In</div>
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+            <div class="card-body py-5 text-muted">
+
+                <div class="h6 text-left mb-1">Username</div>
+                <div class="input-group">
+                    <div class="input-group-prepend bg-light" *ngIf="userName.touched && userName.valid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-green">done_all</mat-icon>
+                        </span>
+                    </div>
+                    <div class="input-group-prepend bg-light" *ngIf="userName.touched && userName.invalid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-danger">clear</mat-icon>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control form-control-lg" name="inputUserName" ngModel minlength="3"
+                        autocomplete="off" placeholder="Username..." #userName="ngModel" required>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="userName.touched && !userName.valid">
+                    <div *ngIf="userName.errors.required">
+                        This field is required.
+                    </div>
+                    <div *ngIf="userName.errors.minlength">
+                        Minimum 3 characters needed.
+                    </div>
+                </div>
+
+                <div class="h6 text-left mt-4 mb-1">Password</div>
+                <div class="input-group">
+                    <div class="input-group-prepend bg-light" *ngIf="password.touched && password.valid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-green">done_all</mat-icon>
+                        </span>
+                    </div>
+                    <div class="input-group-prepend bg-light" *ngIf="password.touched && password.invalid">
+                        <span class="input-group-text bg-white">
+                            <mat-icon class="text-danger">clear</mat-icon>
+                        </span>
+                    </div>
+                    <input type="password" class="form-control form-control-lg" name="inputPassword" ngModel
+                        minlength="6" placeholder="Password..." #password="ngModel" required>
+                </div>
+                <div class="alert alert-danger p-1 m-0" *ngIf="password.touched && !password.valid">
+                    <div *ngIf="password.errors.required">
+                        This field is required.
+                    </div>
+                    <div *ngIf="password.errors.minlength">
+                        Minimum 6 characters needed.
+                    </div>
+                </div>
+
+            </div>
+            <button [disabled]="!loginForm.valid" type="submit" matRipple
+                class="card-footer btn btn-lg w-100 btn-green">
+                Sign In
+            </button>
+        </form>
+
+    </div>
+</div>
+
+
+<!--<div class="container-fluid contain p-5 d-flex justify-content-center">
+    <div class="card mt-5 handy-card text-center" style="width: 40rem;">
+        <div class="card-header h5 text-green bg-transparent">Register</div>
+        <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
+            <div class="card-body text-mute py-5">
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend bg-light" *ngIf="userName.touched && userName.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <div class="input-group-prepend bg-light" *ngIf="userName.touched && userName.invalid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-danger">clear</mat-icon>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control form-control-lg" name="inputUserName" ngModel
+                                minlength="3" autocomplete="off" placeholder="Username..." #userName="ngModel" required>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="userName.touched && !userName.valid">
+                            <div *ngIf="userName.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="userName.errors.minlength">
+                                Minimum 3 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend bg-light" *ngIf="branch.touched && branch.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <div class="input-group-prepend bg-light" *ngIf="branch.touched && branch.invalid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-danger">clear</mat-icon>
+                                </span>
+                            </div>
+                            <select class="form-control form-control-lg" name="inputBranch" ngModel required
+                                #branch="ngModel">
+                                <option selected value="">State...</option>
+                                <option *ngFor="let state of states" [value]="state.alias">
+                                    {{  state.state | titlecase }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="branch.touched && !branch.valid">
+                            <div *ngIf="branch.errors.required">
+                                This field is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="input-group mt-2">
+                            <div class="input-group-prepend bg-light" *ngIf="password.touched && password.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
+                            <div class="input-group-prepend bg-light" *ngIf="password.touched && password.invalid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-danger">clear</mat-icon>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control form-control-lg" name="inputPassword" ngModel
+                                minlength="6" placeholder="Password..." #password="ngModel" required>
+                        </div>
+                        <div class="alert alert-danger p-1 m-0" *ngIf="password.touched && !password.valid">
+                            <div *ngIf="password.errors.required">
+                                This field is required.
+                            </div>
+                            <div *ngIf="password.errors.minlength">
+                                Minimum 6 characters needed.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button [disabled]="!signupForm.valid" type="submit" matRipple
+                class="card-footer btn btn-lg w-100 btn-green">
+                Sign Up
+            </button>
+        </form>
+
+    </div>
+</div> -->

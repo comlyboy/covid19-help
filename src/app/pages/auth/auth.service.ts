@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { environment } from 'src/environments/environment';
+import { IUser, ISignup, ILogin } from 'src/app/interfaces/user';
 import { Subject } from 'rxjs';
-import { environment } from '../../../environments/environment';
-
-import { NavigationService } from '../../shared/service/navigation.service';
-import { NotificationService } from '../../shared/service/notification.service';
-import { StorageService } from '../../shared/service/storage.service';
-import { IUser, ISignup, ILogin } from '../../interfaces/user';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/service/notification.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
+import { NavigationService } from 'src/app/shared/service/navigation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  API_URL = environment.API_URL;
+  API_URL = environment;
   user: IUser
   userProfile: any;
 
@@ -38,8 +37,6 @@ export class AuthService {
     return this.authenticationStatusListener.asObservable();
   }
 
-
-
   // user authentication token
   getToken() {
     return this.token;
@@ -51,22 +48,22 @@ export class AuthService {
   }
 
   // Adding new user
-  createUser(firstName: string, lastName: string, userName: string, phoneNumber: string, branch: string, password: string) {
+  createUser( userName: string, state: string, password: string) {
     const signupData: ISignup = {
       _id: null,
-      firstName: firstName,
-      lastName: lastName,
       userName: userName,
-      phoneNumber: phoneNumber,
-      branch: branch,
+      state: state,
       password: password,
     };
-    this.http.post(`${this.API_URL}user/signup`, signupData)
-      .subscribe(response => {
-        this.notificationsService.success('Registered successfully');
-      }, error => {
-        console.log(error)
-      });
+
+    console.log(signupData);
+    
+    // this.http.post(`${this.API_URL}user/signup`, signupData)
+    //   .subscribe(response => {
+    //     this.notificationsService.success('Registered successfully');
+    //   }, error => {
+    //     console.log(error)
+    //   });
   }
 
 
@@ -77,22 +74,23 @@ export class AuthService {
       password: password
     };
 
-    this.http.post<{ message: string, role: string, token: string, userId: string }>(`${this.API_URL}user/login`, loginData)
+    this.http.post<{ token: string, user: IUser }>(`${this.API_URL}user/login`, loginData)
       .subscribe(response => {
+        const _user = response.user;
         const _token = response.token;
-        const role = response.role
-        this.token = _token;
-        if (role !== "admin") {
-          return this.notificationsService.wrongUser("You are not an admin");
-        }
+        const isAdmin = response.user.isAdmin;
+        this.token = _token
+
+        // if (role !== "admin") {
+        //   return this.notificationsService.wrongUser("You are not an admin");
+        // };
         if (!_token) {
           return;
         }
         this.isAuthenticated = true;
-        this.userId = response.userId;
         this.authenticationStatusListener.next(true);
-        this.saveAuthenticationData(_token, this.userId);
-        this.notificationsService.success(response.message);
+        this.saveAuthenticationData(_token, _user);
+        this.notificationsService.success(`Welcome ${response.user.userName}`);
         this.navigationService.goDashboard();
       }, error => {
         console.log(error.message)
@@ -108,27 +106,22 @@ export class AuthService {
     this.authenticationStatusListener.next(false);
     this.userId = null;
     this.clearAuthenticationData();
-    this.notificationsService.success('Logged out');
     this.navigationService.goAuth();
   }
 
   // this saves the authentication datas to the browser
-  private saveAuthenticationData(token: string, userId: string) {
-    this.storageService.saveAuthData(token, userId);
+  private saveAuthenticationData(token: string, user: any) {
+    this.storageService.saveAuthData(token, user);
   }
 
   // this gets the user authentication data
   private getAuthenticationData() {
-    // let authData;
-    // await this.storageService.getAuthData()
-    //   .then(document => {
-    //     authData = document
-    //   });
+    let authData = this.storageService.getAuthData()
 
-    const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
-
-
+    const token = authData.token;
+    const userId = authData.userId;
+    console.log(token, userId);
+    
     return { token, userId };
   }
 

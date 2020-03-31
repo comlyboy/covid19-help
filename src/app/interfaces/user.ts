@@ -1,28 +1,16 @@
 export interface IUser {
-    _id?: string;
-    firstName: string;
-    lastName: string;
+    _id?: string
     userName: string;
-    phoneNumber: string;
-    email: string;
-    address: string;
-    position: string;
-    branch: string;
     password: string;
-    role: string;
-    registeredAt: Date;
-    isActive: boolean;
-    isVerified: boolean;
+    state: string;
+    isAdmin?: boolean;
 }
 
 
 export interface ISignup {
     _id?: string;
-    firstName: string;
-    lastName: string;
     userName: string;
-    phoneNumber: string;
-    branch: string;
+    state: string
     password: string
 }
 

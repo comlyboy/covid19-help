@@ -1,15 +1,7 @@
-<mat-toolbar class="my-toolbar sticky-top bg-white container-fluid">
-
-
-
-
-</mat-toolbar>
-
-
 <div class="container mt-5">
     <div class="card handy-card">
         <div class="card-header bg-transparent">
-            <div class="h5 mb-0 text-handy">Register Case</div>
+            <div class="h5 mb-0 text-green">Register Case</div>
         </div>
         <div class="card-body px-5">
 
@@ -206,7 +198,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end mb-2">
-                    <button mat-raised-button type="submit" class="btn btn-success btn-lg mt-5 ml-3 py-1">Submit</button>
+                    <button [disabled]="!caseForm.valid" matRipple type="submit" class="btn btn-success btn-lg mt-5 ml-3 py-1">Submit</button>
                 </div>
 
             </form>

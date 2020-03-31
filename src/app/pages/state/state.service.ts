@@ -11,7 +11,7 @@ import { IState } from 'src/app/interfaces/state';
   providedIn: 'root'
 })
 export class StateService {
-  private API_URL = environment.API_URL;
+  private API_URL = environment;
 
   states: IState[] = [];
 
@@ -23,12 +23,12 @@ export class StateService {
 
   getStates() {
     return this.http
-      .get<IState[]>(`${this.API_URL}lgas`);
+      .get<IState[]>(`${this.API_URL._STATE}lgas`);
   }
 
   getStateLGA(stateId: string) {
     return this.http
-      .get<any[]>(`${this.API_URL}states/${stateId}/lgas`);
+      .get<any[]>(`${this.API_URL._STATE}states/${stateId}/lgas`);
   }
 
 

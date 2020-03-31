@@ -17,18 +17,18 @@ export class HomeService {
     state: string,
     lga: string,
     address: string,
-    symtoms: string,
+    symptoms: string
   ) {
     const caseData: ICase = {
       id: null,
       firstname,
       surname,
       phoneNumber,
-      dateOfBirth,
       state,
       lga,
+      dateOfBirth,
       address,
-      symtoms
+      symptoms
     };
 
 

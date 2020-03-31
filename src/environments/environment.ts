@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  API_URL: "https://locationsng-api.herokuapp.com/api/v1/"
+  _STATE: "https://locationsng-api.herokuapp.com/api/v1/",
+  _SERVER: "http://localhost:3300/api/v1/"
+
   
 };
 

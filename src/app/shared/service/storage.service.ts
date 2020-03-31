@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IUser } from 'src/app/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +8,9 @@ export class StorageService {
 
   constructor() { }
 
-  async saveAuthData(token: string, userId: string) {
+  async saveAuthData(token: string, userId: IUser) {
     localStorage.setItem('token', token);
-    localStorage.setItem('userId', userId);
+    // localStorage.setItem('userId', userId);
   }
 
 

@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
-import { AngularMaterialModule } from '../../shared/module/material.module';
+import { AngularMaterialModule } from 'src/app/shared/module/material.module';
 
 
 @NgModule({
   declarations: [AuthComponent],
+  exports: [AuthComponent],
   imports: [
     CommonModule,
     FormsModule,
