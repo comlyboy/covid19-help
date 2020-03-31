@@ -31,9 +31,24 @@ mat-icon {
     font-size: 13px !important;
 }
 
-.btn-handy:hover {
-    background-color: #2d8530 !important;
+
+.text-handy {
+    color: #4a6ee0 !important;
 }
+
+.bg-handy {
+    background-color: #4a6ee0 !important;
+}
+
+.btn-handy {
+    background-color: #4a6ee0 !important;
+    color: white !important;
+}
+
+.btn-handy:hover {
+    background-color: #224bd5 !important;
+}
+
 
 .btn-green {
     background-color: #4caf50 !important;

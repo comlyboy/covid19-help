@@ -1,14 +1,10 @@
 <!-- Container for sidebar(s) + page content -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div (click)="_toggleSidebar()" class="h5 text-green">
-        <i class="fas fa-align-justify"></i>
-    </div>
-</nav>
+
 <ng-sidebar-container>
 
 
-    <ng-sidebar class="sidebar" mode="push" [opened]="_opened">
-        <div class="sidebar-content">
+    <ng-sidebar *ngIf="userIsAuthenticated" class="sidebar" autoCollapseWidth="767" mode="push" [opened]="_opened">
+        <div class="sidebar-content bg-light">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, dolor dolorum culpa ullam minima explicabo
             officia, doloribus laudantium perferendis atque recusandae error magnam quia, tempora aut nemo. Repudiandae,
             iusto reiciendis?
@@ -16,6 +12,14 @@
     </ng-sidebar>
 
     <div ng-sidebar-content>
+        <nav *ngIf="userIsAuthenticated" class="navbar navbar-expand-lg navbar-light bg-light py-3">
+            <div class="d-flex text-handy">
+                <div (click)="_toggleSidebar()" class="h5 mb-0 pointer">
+                    <i class="fa fa-align-justify"></i>
+                </div>
+                <div class="h5 mb-0 ml-5">NCDC-help</div>
+            </div>
+        </nav>
         <router-outlet></router-outlet>
     </div>
 

@@ -1,14 +1,13 @@
-.sidebar {
-    box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
-    background-color: #469df3 !important;
+ng-sidebar {
+    box-shadow: 0 0.5rem 1rem 0 rgba(11, 58, 213, 0.728);
 }
 
 .sidebar-content {
     position: relative;
-    overflow: auto;
+    // overflow: auto;
     height: 100% !important;
     width: 120px !important;
-    background-color: #4570e7 !important;
+    background-color: #4a6ee0 !important;
 }
 
 .sidebar a {

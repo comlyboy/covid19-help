@@ -8,37 +8,27 @@ export class StorageService {
 
   constructor() { }
 
-  async saveAuthData(token: string, userId: IUser) {
+  async saveAuthData(token: string, user: IUser) {
     localStorage.setItem('token', token);
-    // localStorage.setItem('userId', userId);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
 
   getAuthData() {
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
-
-    if (!userId || !token) {
-      return null;
-    }
-
     return {
-      token,
-      userId
+      token
     };
 
   }
 
-  getUserId() {
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
-      return null;
-    }
-    return userId;
+  getUserOBJ() {
+    const user = localStorage.getItem('user');
+    return JSON.parse(user);
   }
 
   async removeAuthData() {
     localStorage.removeItem('token');
-    localStorage.removeItem('userId');
+    localStorage.removeItem('user');
   }
 }

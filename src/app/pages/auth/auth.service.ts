@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   // Adding new user
-  createUser( userName: string, state: string, password: string) {
+  createUser(userName: string, state: string, password: string) {
     const signupData: ISignup = {
       _id: null,
       userName: userName,
@@ -57,7 +57,7 @@ export class AuthService {
     };
 
     console.log(signupData);
-    
+
     this.http.post(`${this.API_URL}user/signup`, signupData)
       .subscribe(response => {
         this.notificationsService.success('Registered successfully');
@@ -87,14 +87,14 @@ export class AuthService {
         // // if (role !== "admin") {
         // //   return this.notificationsService.wrongUser("You are not an admin");
         // // };
-        // if (!_token) {
-        //   return;
-        // }
-        // this.isAuthenticated = true;
-        // this.authenticationStatusListener.next(true);
+        if (!_token) {
+          return;
+        }
+        this.isAuthenticated = true;
+        this.authenticationStatusListener.next(true);
         this.saveAuthenticationData(_token, _user);
         this.notificationsService.success(`Welcome ${response.user.userName}`);
-        // this.navigationService.goToDashboard();
+        this.navigationService.goToDashboard();
       }, error => {
         console.log(error.message)
         this.authenticationStatusListener.next(false);
@@ -120,25 +120,20 @@ export class AuthService {
   // this gets the user authentication data
   private getAuthenticationData() {
     let authData = this.storageService.getAuthData()
-
     const token = authData.token;
-    const userId = authData.userId;
-    console.log(token, userId);
-    
-    return { token, userId };
+    return { token };
   }
 
   // persists user authentication automatically
   automaticAuthenticateUser() {
     const authenticationInformation = this.getAuthenticationData();
     let token_ = authenticationInformation.token;
-    let userId_ = authenticationInformation.userId;
-    if (!token_ || !userId_) {
+
+    if (!token_) {
       return;
     }
 
     this.token = authenticationInformation.token;
-    this.userId = authenticationInformation.userId;
     this.isAuthenticated = true;
     this.authenticationStatusListener.next(true);
   }
