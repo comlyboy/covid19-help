@@ -58,12 +58,12 @@ export class AuthService {
 
     console.log(signupData);
     
-    // this.http.post(`${this.API_URL}user/signup`, signupData)
-    //   .subscribe(response => {
-    //     this.notificationsService.success('Registered successfully');
-    //   }, error => {
-    //     console.log(error)
-    //   });
+    this.http.post(`${this.API_URL}user/signup`, signupData)
+      .subscribe(response => {
+        this.notificationsService.success('Registered successfully');
+      }, error => {
+        console.log(error)
+      });
   }
 
 
@@ -74,24 +74,27 @@ export class AuthService {
       password: password
     };
 
-    this.http.post<{ token: string, user: IUser }>(`${this.API_URL}user/login`, loginData)
+    console.log(loginData);
+
+    this.http.post<{ token: string, user: IUser }>(`${this.API_URL._SERVER}user/login`, loginData)
       .subscribe(response => {
+        console.log(response)
         const _user = response.user;
         const _token = response.token;
         const isAdmin = response.user.isAdmin;
         this.token = _token
 
-        // if (role !== "admin") {
-        //   return this.notificationsService.wrongUser("You are not an admin");
-        // };
-        if (!_token) {
-          return;
-        }
-        this.isAuthenticated = true;
-        this.authenticationStatusListener.next(true);
+        // // if (role !== "admin") {
+        // //   return this.notificationsService.wrongUser("You are not an admin");
+        // // };
+        // if (!_token) {
+        //   return;
+        // }
+        // this.isAuthenticated = true;
+        // this.authenticationStatusListener.next(true);
         this.saveAuthenticationData(_token, _user);
         this.notificationsService.success(`Welcome ${response.user.userName}`);
-        this.navigationService.goDashboard();
+        // this.navigationService.goToDashboard();
       }, error => {
         console.log(error.message)
         this.authenticationStatusListener.next(false);
@@ -106,11 +109,11 @@ export class AuthService {
     this.authenticationStatusListener.next(false);
     this.userId = null;
     this.clearAuthenticationData();
-    this.navigationService.goAuth();
+    this.navigationService.goToAuth();
   }
 
   // this saves the authentication datas to the browser
-  private saveAuthenticationData(token: string, user: any) {
+  private saveAuthenticationData(token: string, user: IUser) {
     this.storageService.saveAuthData(token, user);
   }
 

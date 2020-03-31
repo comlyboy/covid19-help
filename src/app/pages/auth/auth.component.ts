@@ -66,7 +66,7 @@ export class AuthComponent implements OnInit {
   initContents() {
     this.isAuthenticated = this.authService.getIsAuthenticated()
     if (this.isAuthenticated) {
-      this.navigationService.goDashboard();
+      this.navigationService.goToDashboard();
     };
 
 

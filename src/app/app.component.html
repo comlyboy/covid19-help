@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<!-- Container for sidebar(s) + page content -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div (click)="_toggleSidebar()" class="h5 text-green">
+        <i class="fas fa-align-justify"></i>
+    </div>
+</nav>
+<ng-sidebar-container>
+
+
+    <ng-sidebar class="sidebar" mode="push" [opened]="_opened">
+        <div class="sidebar-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, dolor dolorum culpa ullam minima explicabo
+            officia, doloribus laudantium perferendis atque recusandae error magnam quia, tempora aut nemo. Repudiandae,
+            iusto reiciendis?
+        </div>
+    </ng-sidebar>
+
+    <div ng-sidebar-content>
+        <router-outlet></router-outlet>
+    </div>
+
+</ng-sidebar-container>

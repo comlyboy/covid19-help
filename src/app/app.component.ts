@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'covid19-help';
+
+  _opened: boolean = true;
+
+  _toggleSidebar() {
+    this._opened = !this._opened;
+  }
+
 }

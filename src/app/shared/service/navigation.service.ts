@@ -8,34 +8,22 @@ export class NavigationService {
 
   constructor(
     private router: Router,
-
   ) { }
 
-  goAuth() {
+  goToAuth() {
     this.router.navigate(["/auth"]);
   };
 
-  goDashboard() {
+  goToDashboard() {
     this.router.navigate(["/dashboard"]);
   };
 
-  goBranch() {
-    this.router.navigate(["/branches"]);
+  goToCases() {
+    this.router.navigate(["/cases"]);
   };
 
-  goCustomer() {
-    this.router.navigate(["/customers"]);
+  goToStates() {
+    this.router.navigate(["/states"]);
   };
 
-  goEngineer() {
-    this.router.navigate(["/engineers"]);
-  };
-
-  goReport() {
-    this.router.navigate(["/report"]);
-  };
-
-
-
-
-}
+};
