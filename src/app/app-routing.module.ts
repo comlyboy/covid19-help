@@ -19,6 +19,11 @@ const routes: Routes = [
       .then(m => m.DashboardModule)
   },
   {
+    path: 'states',
+    loadChildren: () => import('./pages/state/state.module')
+      .then(m => m.StateModule)
+  },
+  {
     path: 'cases',
     loadChildren: () => import('./pages/case/case.module')
       .then(m => m.CaseModule)

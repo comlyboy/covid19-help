@@ -2,7 +2,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb my-4 py-1">
             <li class="breadcrumb-item active h5 mb-0" aria-current="page">Cases
-                <span class="ml-2 badge badge-info bg-handy">{{ totalCases }}</span>
+                <span class="ml-2 badge badge-info bg-green">{{ totalCases }}</span>
             </li>
         </ol>
     </nav>
@@ -27,15 +27,15 @@
 
 <div class="container-fluid my-4">
     <table class="table table-bordered m-0">
-        <thead class="bg-handy text-light">
+        <thead class="bg-green text-light">
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Date</th>
                 <th scope="col">Full Name</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">state</th>
-                <th scope="col">Engineer</th>
-                <th scope="col">Engineer</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">State</th>
+                <th scope="col">LGA</th>
+                <th scope="col">Date Of Birth</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -58,8 +58,8 @@
                             <i class="fa fa-edit"></i>
                         </div>
 
-                        <div [routerLink]="['/cases', case._id, case.firstName]" matRipple matTooltip="See details?"
-                            matTooltipPosition="above" class="pointer action-open p-2">
+                        <div matRipple matTooltip="See details?" matTooltipPosition="above"
+                            class="pointer action-open p-2">
                             <i class="fa fa-align-justify"></i>
                         </div>
 

@@ -20,16 +20,27 @@ export class StateService {
   ) { }
 
 
+  async getState() {
+    this.http
+      .get<IState[]>(`${this.API_URL._STATE_2}states`)
+      .subscribe(stateData => {
+        console.log(stateData);
+
+      });
+
+  }
+
 
   getStates() {
+    this.getState();
     return this.http
       .get<IState[]>(`${this.API_URL._STATE}lgas`);
-  }
+  };
 
   getStateLGA(stateId: string) {
     return this.http
       .get<any[]>(`${this.API_URL._STATE}states/${stateId}/lgas`);
-  }
+  };
 
 
 
