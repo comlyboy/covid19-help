@@ -20,10 +20,9 @@ const routes: Routes = [
   },
   {
     path: 'cases',
-    loadChildren: () => import('./pages/auth/auth.module')
-      .then(m => m.AuthModule)
+    loadChildren: () => import('./pages/case/case.module')
+      .then(m => m.CaseModule)
   }
-
 ];
 
 @NgModule({

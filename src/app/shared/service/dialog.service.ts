@@ -1,18 +1,7 @@
 import { Injectable } from '@angular/core';
 
-// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
 import Swal from 'sweetalert2'
-
-// import { BranchService } from '../branch/branch.service';
-// import { NotificationsListService } from '../extra/notifications-list/notifications-list.service';
-// import { HeaderService } from '../extra/header/header.service';
-// import { TransactionDetailsComponent } from '../transaction/transaction-details/transaction-details.component';
-import { ITransaction } from '../../interfaces/transations';
-import { ICustomer } from '../../interfaces/customer';
-import { NotificationsListService } from '../components/notifications-list/notifications-list.service';
-import { HeaderService } from '../components/header/header.service';
-import { BranchService } from '../../pages/branch/branch.service';
+import { CaseService } from 'src/app/pages/case/case.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +10,7 @@ export class DialogService {
   employeeParam = "";
 
   constructor(
-    public notificationsListService: NotificationsListService,
-    public headerService: HeaderService,
-    public branchService: BranchService,
-    // public dialog: MatDialog
-
+    private caseService: CaseService
   ) { }
 
 
@@ -41,9 +26,7 @@ export class DialogService {
   //   });
   // }
 
-
-
-  branchDeleteDialog(_id: string, name: string) {
+  caseDeleteDialog(_id: string) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-danger bg-danger',
@@ -61,45 +44,75 @@ export class DialogService {
       cancelButtonText: 'No, cancel!',
       reverseButtons: true
     }).then((result) => {
+      console.log(result);
       if (result.value) {
-        this.branchService.deleteBranch(_id)
+        this.caseService.deleteCase(_id)
           .subscribe(() => {
-            this.branchService.getBranches(18, 1)
+            this.caseService.getCases();
             this.success()
           });
       }
     })
-  }
+  };
 
 
-  // ++++++++++++++++++++++
-  engineerApproval(id: string, name: string) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success bg-green',
-        cancelButton: 'btn btn-danger bg-danger'
-      },
-      buttonsStyling: true
-    })
+  // branchDeleteDialog(_id: string, name: string) {
+  //   const swalWithBootstrapButtons = Swal.mixin({
+  //     customClass: {
+  //       confirmButton: 'btn btn-danger bg-danger',
+  //       cancelButton: 'btn btn-secondary'
+  //     },
+  //     buttonsStyling: true
+  //   })
 
-    swalWithBootstrapButtons.fire({
-      title: 'Approve' + ' ' + name + '?',
-      text: "Be sure to check if he is truely an engineer!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, approve!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this.notificationsListService.approveEngineer(id)
-          .subscribe(() => {
-            this.notificationsListService.getNotifications();
-            this.success();
-          });
-      }
-    })
-  }
+  //   swalWithBootstrapButtons.fire({
+  //     title: 'Delete' + ' ' + name + '?',
+  //     text: "You won't be able to revert this!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Yes, delete it!',
+  //     cancelButtonText: 'No, cancel!',
+  //     reverseButtons: true
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       this.branchService.deleteBranch(_id)
+  //         .subscribe(() => {
+  //           this.branchService.getBranches(18, 1)
+  //           this.success()
+  //         });
+  //     }
+  //   })
+  // }
+
+
+  // // ++++++++++++++++++++++
+  // engineerApproval(id: string, name: string) {
+  //   const swalWithBootstrapButtons = Swal.mixin({
+  //     customClass: {
+  //       confirmButton: 'btn btn-success bg-green',
+  //       cancelButton: 'btn btn-danger bg-danger'
+  //     },
+  //     buttonsStyling: true
+  //   })
+
+  //   swalWithBootstrapButtons.fire({
+  //     title: 'Approve' + ' ' + name + '?',
+  //     text: "Be sure to check if he is truely an engineer!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Yes, approve!',
+  //     cancelButtonText: 'No, cancel!',
+  //     reverseButtons: true
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       this.notificationsListService.approveEngineer(id)
+  //         .subscribe(() => {
+  //           this.notificationsListService.getNotifications();
+  //           this.success();
+  //         });
+  //     }
+  //   })
+  // }
 
 
   success() {

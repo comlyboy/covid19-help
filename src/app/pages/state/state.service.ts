@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 
-import { environment } from 'src/environments/environment';
-import { IState } from 'src/app/interfaces/state';
+import { environment } from '../../../environments/environment';
+import { IState } from '../../interfaces/state';
 
 @Injectable({
   providedIn: 'root'

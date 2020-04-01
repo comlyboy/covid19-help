@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { TimesAgoPipe } from './times-ago.pipe';
 import { StatusPipe } from './status.pipe';
+import { AgePipe } from './age.pipe';
 
 
 
 @NgModule({
   declarations: [
     TimesAgoPipe,
-    StatusPipe
+    StatusPipe,
+    AgePipe
   ],
   exports: [
     TimesAgoPipe,
-    StatusPipe
+    StatusPipe,
+    AgePipe
   ]
 })
 export class PipesModule { }

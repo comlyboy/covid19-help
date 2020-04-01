@@ -1,1 +1,84 @@
-<p>case works!</p>
+<div class="container-fluid px-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb my-4 py-1">
+            <li class="breadcrumb-item active h5 mb-0" aria-current="page">Cases
+                <span class="ml-2 badge badge-info bg-handy">{{ totalCases }}</span>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+
+<!-- <div class="container">
+    <form (submit)="onSearch(searchForm)" #searchForm="ngForm">
+        <div class="input-group my-1">
+            <input type="text" class="form-control form-control-lg rounded-0" name="inputSearch" ngModel
+                autocomplete="off" placeholder="Search by Phone Number...">
+            <div class="input-group-prepend">
+                <button type="submit" matRipple class="btn btn-green">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div> -->
+
+
+
+<div class="container-fluid my-4">
+    <table class="table table-bordered m-0">
+        <thead class="bg-handy text-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">state</th>
+                <th scope="col">Engineer</th>
+                <th scope="col">Engineer</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white handy-table-body text-muted" *ngIf="cases.length > 0">
+            <tr *ngFor="let case of cases">
+                <td>{{ case.caseId }}</td>
+                <td>{{ case?.registeredAt | date:'mediumDate' }}, {{ case?.registeredAt | date:'shortTime' }}
+                </td>
+                <td>{{ case.firstname | titlecase }} {{ case.surname | titlecase }}
+                </td>
+                <td>{{ case.phoneNumber }}</td>
+                <td>{{ case.state }}</td>
+                <td>{{ case.lga }}</td>
+                <td>{{ case.dateOfBirth | ageCalculate }} year(s) old</td>
+
+                <td class="py-0">
+                    <div class="d-flex justify-content-around my-1">
+                        <div matRipple matTooltip="Edit case details?" matTooltipPosition="above"
+                            class="pointer action-edit p-2">
+                            <i class="fa fa-edit"></i>
+                        </div>
+
+                        <div [routerLink]="['/cases', case._id, case.firstName]" matRipple matTooltip="See details?"
+                            matTooltipPosition="above" class="pointer action-open p-2">
+                            <i class="fa fa-align-justify"></i>
+                        </div>
+
+                        <div (click)="onDeleteDialog(case._id)" matRipple class="pointer action-delete p-2"
+                            matTooltip="Delete case?" matTooltipPosition="above">
+                            <i class="fa fa-trash"></i>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="lead mt-4 text-muted font-italic d-flex justify-content-center" *ngIf="cases.length <= 0">No
+        case added yet</div>
+</div>
+
+
+<div *ngIf="cases.length > 0" class="container-fluid">
+    <mat-paginator class="handy-card handy-border text-small" [length]="totalCases" [pageSize]="casesPerPage"
+        [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)">
+    </mat-paginator>
+</div>

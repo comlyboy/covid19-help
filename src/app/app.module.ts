@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './pages/auth/auth.guard';
 import { AuthInterceptor } from './pages/auth/auth.interceptor';
 import { ErrorInterceptor } from './shared/interceptor/error-interceptor';
+import { AngularMaterialModule } from './shared/module/material.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ErrorInterceptor } from './shared/interceptor/error-interceptor';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    AngularMaterialModule
   ],
   providers: [
     AuthGuard,

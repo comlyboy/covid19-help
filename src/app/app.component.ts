@@ -15,9 +15,9 @@ export class AppComponent implements OnInit {
   userIsAuthenticated: boolean = false;
   _opened: boolean = true;
 
-  
   private authStatusListenerSub: Subscription;
 
+  
   constructor(
     private authService: AuthService,
   ) {

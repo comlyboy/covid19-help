@@ -4,10 +4,10 @@ ng-sidebar {
 
 .sidebar-content {
     position: relative;
-    // overflow: auto;
+    overflow: auto;
     height: 100% !important;
     width: 120px !important;
-    background-color: #4a6ee0 !important;
+    background-color: #ffffff !important;
 }
 
 .sidebar a {
@@ -20,8 +20,7 @@ ng-sidebar {
 
 .current {
     background-color: #ecf0fb !important;
-    color: #4a6ee0 !important;
-    border-right: #4a6ee0 solid 5px;
+    color: #866ec7 !important;
 }
 
 .sidebar a:hover {
@@ -29,9 +28,9 @@ ng-sidebar {
     text-decoration: none;
 }
 
-// .sidebar li:last-child a {
-//     border-bottom: none;
-// }
+.sidebar li:last-child a {
+    border-bottom: none;
+}
 
 .extra:hover {
     border-radius: 50% !important;
