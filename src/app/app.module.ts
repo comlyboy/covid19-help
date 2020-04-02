@@ -7,11 +7,14 @@ import { AppComponent } from './app.component';
 
 import { SidebarModule } from 'ng-sidebar';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AuthGuard } from './pages/auth/auth.guard';
 import { AuthInterceptor } from './pages/auth/auth.interceptor';
 import { ErrorInterceptor } from './shared/interceptor/error-interceptor';
 import { AngularMaterialModule } from './shared/module/material.module';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { AngularMaterialModule } from './shared/module/material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SidebarModule.forRoot(),
-    AngularMaterialModule
+    AngularMaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AuthGuard,

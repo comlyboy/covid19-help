@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   private authStatusListenerSub: Subscription;
 
-  
+
   constructor(
     private authService: AuthService,
   ) {
@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
+    // this._opened = false;
   };
 
 
