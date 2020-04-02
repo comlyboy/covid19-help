@@ -20,20 +20,20 @@
                 </li>
 
                 <li matRipple>
-                    <a class="h6 mb-0 text-center" routerLink="/states" routerLinkActive="current">
-                        <div class="h6">
-                            <i class="fas fa-flag"></i>
-                        </div>
-                        <div class="h6 mb-0">States</div>
-                    </a>
-                </li>
-
-                <li matRipple>
                     <a class="h6 mb-0 text-center" routerLink="/cases" routerLinkActive="current">
                         <div class="h6">
                             <i class="fas fa-head-side-cough"></i>
                         </div>
                         <div class="h6 mb-0">Cases</div>
+                    </a>
+                </li>
+
+                <li matRipple>
+                    <a class="h6 mb-0 text-center" routerLink="/states" routerLinkActive="current">
+                        <div class="h6">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="h6 mb-0">States</div>
                     </a>
                 </li>
             </ul>
@@ -42,13 +42,30 @@
     </ng-sidebar>
 
     <div ng-sidebar-content>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-            <div class="d-flex text-green">
-                <div (click)="_toggleSidebar()" class="h5 mb-0 pointer">
+        <nav class="navbar navbar-expand-lg text-green bg-white py-3">
+            <div class="d-flex">
+                <div *ngIf="userIsAuthenticated" (click)="_toggleSidebar()" class="h5 mb-0 pointer">
                     <i class="fa fa-align-justify"></i>
                 </div>
                 <div class="h5 mb-0 ml-5">NCDC-help</div>
             </div>
+
+            <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h5 mb-0 ml-auto mr-4">
+                <i class="fa fa-user-circle"></i>
+            </div>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <ng-template matMenuContent>
+                    <div class="card-body text-center text-mute p-0">
+                        <ul class="list-group list-group-flush">
+                            <li matRipple (click)="onLogout()"
+                                class="list-group-item list-group-item-action pointer h6 px-5 py-3">
+                                Logout</li>
+                            <li matRipple class="list-group-item list-group-item-action pointer h6 px-5 py-3">
+                                Help</li>
+                        </ul>
+                    </div>
+                </ng-template>
+            </mat-menu>
         </nav>
         <router-outlet></router-outlet>
     </div>

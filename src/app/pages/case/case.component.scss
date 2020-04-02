@@ -15,3 +15,13 @@
     background-color: #faebec !important;
     color: #dc3545 !important;
 }
+
+
+.list-group-item-action {
+    border-left: #377cc700 solid 5px;
+}
+
+.list-group-item-action:hover {
+    border-left: #4caf50 solid 5px;
+    background-color: rgba(229, 232, 236, 0.224);
+}

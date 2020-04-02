@@ -22,16 +22,16 @@ export class StateComponent implements OnInit {
   initContents() {
     this.stateService.getStates()
       .subscribe(stateData => {
-        console.log(stateData);
         let sorted = _.sortBy(stateData, 'state');
         this.states = sorted;
-        console.log(this.states);
+        this.totalStates = this.states.length;
       });
   };
 
+
   ngOnInit() {
     this.initContents();
-  }
+  };
 
 
 }

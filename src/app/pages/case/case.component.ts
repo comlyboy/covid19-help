@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CaseService } from './case.service';
-import { Subscription } from 'rxjs';
-import { ICase } from 'src/app/interfaces/case';
 import { NgForm } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
-import { DialogService } from 'src/app/shared/service/dialog.service';
+
+import { Subscription } from 'rxjs';
+
+import { CaseService } from './case.service';
+import { ICase } from '../../interfaces/case';
+import { DialogService } from '../../shared/service/dialog.service';
 
 @Component({
   selector: 'app-case',
@@ -16,10 +18,9 @@ export class CaseComponent implements OnInit {
   totalCases: number = 0;
   cases: ICase[] = [];
 
-  casesPerPage = 8;
-  pageSizeOptions = [8];
+  casesPerPage = 10;
+  pageSizeOptions = [10];
   currentPage = 1;
-
 
   caseSub: Subscription;
 
@@ -47,7 +48,7 @@ export class CaseComponent implements OnInit {
 
 
   initContent() {
-    this.caseService.getCases();
+    this.caseService.getCases(this.casesPerPage, this.currentPage);
     this.caseSub = this.caseService.getCasesUpdateListener()
       .subscribe(casesData => {
         this.totalCases = casesData.totalCases;

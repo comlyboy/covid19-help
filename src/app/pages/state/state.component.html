@@ -12,11 +12,11 @@
 <div class="container-fluid">
     <div class="row">
         <div *ngFor="let state of states" class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
-            <div class="card handy-card text-center my-2">
+            <a [routerLink]="['/states', state.alias]" class="card handy-card handy-border text-center my-2">
                 <div class="card-body px-0 py-4">
                     <div class="h6 mb-0 text-green">{{ state.state | titlecase }}</div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="container py-5 px-3">
 
-    <div class="card handy-card">
+    <div class="card handy-card text-muted">
         <div class="card-header bg-transparent">
             <div class="h5 mb-0 text-green">Register Case</div>
         </div>
@@ -67,7 +67,8 @@
                         <div class="input-group mt-2">
                             <div class="input-group-prepend bg-light" *ngIf="phonenumber.touched && phonenumber.valid">
                                 <span class="input-group-text bg-white">
-                                    <mat-icon class="text-success">done_all</mat-icon>
+                                    <!-- <mat-icon class="text-success">done_all</mat-icon> -->
+                                    <div class="h5 mb-0 text-green">+234</div>
                                 </span>
                             </div>
                             <div class="input-group-prepend bg-light"
@@ -155,7 +156,7 @@
                                 name="inputDOB" ngModel required autocomplete="off" placeholder="Date of Birth..."
                                 #DOB="ngModel" required>
 
-                            <div class="input-group-prepend bg-light">
+                            <div class="input-group-append">
                                 <span class="input-group-text bg-white pb-0 px-1">
                                     <mat-datepicker-toggle class="m-0 p-0" matSuffix [for]="picker">
                                     </mat-datepicker-toggle>
@@ -209,7 +210,13 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-end mb-2">
+                <div class="d-flex justify-content-between mb-2">
+                    <div class="mt-5">
+                        <div class="h6">By:
+                            <a target="_blank" class="text-green" href="https://twitter.com/Comlyboy"> Cornelius
+                                Okeke</a>
+                        </div>
+                    </div>
                     <button [disabled]="!caseForm.valid" matRipple type="submit"
                         class="btn btn-success btn-lg mt-5 ml-3 py-1">Submit</button>
                 </div>

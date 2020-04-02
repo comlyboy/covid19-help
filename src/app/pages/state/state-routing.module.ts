@@ -8,6 +8,16 @@ const routes: Routes = [
   {
     path: '',
     component: StateComponent
+  }, {
+    path: ':stateId',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./state-details/state-details.module')
+            .then(m => m.StateDetailsModule)
+      }
+    ]
   }
 ];
 

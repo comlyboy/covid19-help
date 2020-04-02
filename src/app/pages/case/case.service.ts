@@ -51,7 +51,6 @@ export class CaseService {
     this.http.post(`${this.API_URL._SERVER}case`, caseData)
       .subscribe(response => {
         this.notificationService.success(`Success!!!`);
-        this.navigationService.goToCases();
       }, error => {
         console.log(error.message)
       });
@@ -70,8 +69,8 @@ export class CaseService {
     return this.casesUpdated.asObservable();
   }
 
-  getCases(caserPerPage?: number, currentPage?: number) {
-    const queryParameter = `?pagesize=${caserPerPage}&page=${currentPage}`;
+  getCases(casesPerPage?: number, currentPage?: number) {
+    const queryParameter = `?pagesize=${casesPerPage}&page=${currentPage}`;
 
     this.http
       .get<{

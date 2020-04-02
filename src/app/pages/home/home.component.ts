@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
 
 
   onSubmitCase(form: NgForm) {
+    const a = "+234"
     if (form.invalid) {
       return;
     }
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
       (
         form.value.inputFirstname,
         form.value.inputSurname,
-        form.value.inputPhoneNumber,
+        a + form.value.inputPhoneNumber,
         form.value.inputStateName,
         form.value.inputLGA,
         form.value.inputDOB,

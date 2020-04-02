@@ -8,41 +8,60 @@
 </div>
 
 
+
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
             <div class="card handy-card text-center my-2">
                 <div class="card-body">
-                    <div class="h3 text-handy">{{ totalCases | number }}</div>
-                    <div class="h6 text-muted">Total Cases</div>
+                    <div class="h3 text-green">{{ totalCases | number }}</div>
+                    <div class="h6 text-muted">All Cases</div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
             <div class="card handy-card text-center my-2">
                 <div class="card-body">
-                    <div class="h3 text-handy">{{ totalCases | number }}</div>
-                    <div class="h6 text-muted">Total Cases</div>
+                    <div class="h3 text-green">{{ totalNewCases | number }}</div>
+                    <div class="h6 text-muted">New Cases</div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
             <div class="card handy-card text-center my-2">
                 <div class="card-body">
-                    <div class="h3 text-handy">{{ totalCases | number }}</div>
-                    <div class="h6 text-muted">Total Cases</div>
+                    <div class="h3 text-green">{{ totalContacted | number }}</div>
+                    <div class="h6 text-muted">Contacted Cases</div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
             <div class="card handy-card text-center my-2">
                 <div class="card-body">
-                    <div class="h3 text-handy">{{ totalCases | number }}</div>
-                    <div class="h6 text-muted">Total Cases</div>
+                    <div class="h3 text-green">{{ totalConfirmed | number }}</div>
+                    <div class="h6 text-muted">Confirmed Cases</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
+            <div class="card handy-card text-center my-2">
+                <div class="card-body">
+                    <div class="h3 text-green">{{ totalQuanrantined | number }}</div>
+                    <div class="h6 text-muted">Quarantined Cases</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
+            <div class="card handy-card text-center my-2">
+                <div class="card-body">
+                    <div class="h3 text-green">{{ totalFake | number }}</div>
+                    <div class="h6 text-muted">Fake Cases</div>
                 </div>
             </div>
         </div>

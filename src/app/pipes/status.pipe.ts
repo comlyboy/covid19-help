@@ -15,7 +15,7 @@ export class StatusPipe implements PipeTransform {
         return "Is Fake";
 
       case 1:
-        return "New";
+        return "New case";
 
       case 2:
         return "Is Contacted";

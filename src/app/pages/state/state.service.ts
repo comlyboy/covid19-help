@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 
 import { Subject } from 'rxjs';
 
-
 import { environment } from '../../../environments/environment';
 import { IState } from '../../interfaces/state';
+import { ICase } from 'src/app/interfaces/case';
+import { IStateMetrics } from 'src/app/interfaces/metric';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,14 @@ export class StateService {
   private API_URL = environment;
 
   states: IState[] = [];
+  cases: ICase[] = [];
 
   constructor(
     private http: HttpClient
   ) { }
 
 
-  async getState() {
+  getState() {
     this.http
       .get<IState[]>(`${this.API_URL._STATE_2}states`)
       .subscribe(stateData => {
@@ -32,16 +34,48 @@ export class StateService {
 
 
   getStates() {
-    this.getState();
+    // this.getState();
     return this.http
       .get<IState[]>(`${this.API_URL._STATE}lgas`);
   };
 
   getStateLGA(stateId: string) {
     return this.http
-      .get<any[]>(`${this.API_URL._STATE}states/${stateId}/lgas`);
+      .get<IState["lgas"][]>(`${this.API_URL._STATE}states/${stateId}/lgas`);
+  };
+
+
+  getStateDetails(stateId: string) {
+    return this.http
+      .get<IState>(`${this.API_URL._STATE}states/${stateId}/details`);
   };
 
 
 
+
+  // ===========
+
+  private stateCasesUpdated = new Subject<IStateMetrics>();
+
+  getStateCasesUpdateListener() {
+    return this.stateCasesUpdated.asObservable();
+  }
+
+  getStateCases(stateId: string) {
+    this.http
+      .get<IStateMetrics>(`${this.API_URL._SERVER}case_by_state/${stateId}`)
+      .subscribe(casesData => {
+        console.log(casesData);
+        this.cases = casesData.cases;
+        this.stateCasesUpdated.next({
+          cases: [...this.cases],
+          totalCases: casesData.totalCases,
+          totalNewCases: casesData.totalNewCases,
+          totalContacted: casesData.totalContacted,
+          totalConfirmed: casesData.totalConfirmed,
+          totalQuanrantined: casesData.totalQuanrantined,
+          totalFake: casesData.totalFake
+        });
+      });;
+  };
 }
