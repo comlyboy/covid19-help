@@ -1,24 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
+import { IState } from 'src/app/interfaces/state';
 import { Subscription } from 'rxjs';
-import _ from "underscore";
-
-
-import { IState } from '../../interfaces/state';
-import { StateService } from '../state/state.service';
-import { CaseService } from '../case/case.service';
 import { AuthService } from '../auth/auth.service';
+import { StateService } from '../state/state.service';
 import { NavigationService } from 'src/app/shared/service/navigation.service';
+import { CaseService } from '../case/case.service';
+import { NgForm } from '@angular/forms';
+import _ from 'underscore';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-on-boarding',
+  templateUrl: './on-boarding.component.html',
+  styleUrls: ['./on-boarding.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class OnBoardingComponent implements OnInit {
   startDate = new Date(1980, 0, 1);
-
 
   states: IState[] = [];
   stateSub: Subscription;
@@ -32,9 +28,19 @@ export class HomeComponent implements OnInit {
     private caseService: CaseService
   ) { }
 
-  
+  onSelectState(value: string) {
+    if (!value) {
+      return;
+    };
 
-  onSubmitCase(form: NgForm) {  
+    this.stateService.getStateLGA(value)
+      .subscribe(lgas => {
+        this.LGAs = lgas;
+      });
+  }
+
+
+  onSubmitCase(form: NgForm) {
     const pre = "+234"
     if (form.invalid) {
       return;

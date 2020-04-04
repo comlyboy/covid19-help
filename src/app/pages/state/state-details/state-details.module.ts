@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { StateDetailsRoutingModule } from './state-details-routing.module';
 import { StateDetailsComponent } from './state-details.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { AngularMaterialModule } from 'src/app/shared/module/material.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
   imports: [
     CommonModule,
     PipesModule,
-    StateDetailsRoutingModule
+    StateDetailsRoutingModule,
+    AngularMaterialModule
   ]
 })
 export class StateDetailsModule { }

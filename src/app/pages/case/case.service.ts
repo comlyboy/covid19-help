@@ -97,4 +97,18 @@ export class CaseService {
 
   }
 
+
+  changeCaseStatus(caseId: string, status: number) {
+    this.http
+      .put(
+        `${this.API_URL._SERVER}case_status/${caseId}`,
+        {
+          status
+        }
+      ).subscribe((result: { message: string }) => {
+        this.notificationService.smallSuccess(result.message);
+        this.getCases(10, 1)
+      });
+  };
+
 }

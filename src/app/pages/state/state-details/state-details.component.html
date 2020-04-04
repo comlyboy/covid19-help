@@ -3,7 +3,7 @@
         <ol class="breadcrumb my-4 py-0">
             <a routerLink="/states" class="breadcrumb-item text-green h5 mb-0" aria-current="page">States
             </a>
-            <li class="breadcrumb-item active h5 mb-0" aria-current="page">{{ state?.name | titlecase }}
+            <li class="breadcrumb-item active h5 mb-0" aria-current="page">{{ state?.alias | stateFormat }}
             </li>
         </ol>
     </nav>
@@ -82,6 +82,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Date</th>
                         <th scope="col">Full Name</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Phone number</th>
                         <th scope="col">LGA</th>
                         <th scope="col">Date Of Birth</th>
@@ -96,26 +97,89 @@
                         </td>
                         <td>{{ case.firstname | titlecase }} {{ case.surname | titlecase }}
                         </td>
+                        <td class=" text-center pb-0 pt-2">
+                            <span [ngClass]="{'badge-warning':  case?.status  == '1',
+                                'badge-info':  case?.status  == '2',
+                                'badge-dark bg-handy':  case?.status  == '3', 
+                                'badge-primary bg-green':  case?.status  == '4',  
+                                'badge-secondary':  case?.status  == '5', 'badge-danger':  case?.status  == '6'}"
+                                class="badge badge-pill px-4 py-2 m-0">{{ case?.status |statusFormat }}
+                            </span>
+                            <!-- <mat-icon class="h6 mb-0 mt-2"> local_shipping</mat-icon> -->
+                        </td>
                         <td>{{ case.phoneNumber }}</td>
                         <td>{{ case.lga | titlecase }}</td>
                         <td>{{ case.dateOfBirth | ageCalculate }} year(s) old</td>
 
                         <td class="py-0">
                             <div class="d-flex justify-content-around my-1">
-                                <div matRipple matTooltip="Edit case details?" matTooltipPosition="above"
-                                    class="pointer action-edit p-2">
+                                <div [matMenuTriggerFor]="menu" matRipple matTooltip="Change case status?"
+                                    matTooltipPosition="above" class="pointer action-edit p-2">
                                     <i class="fa fa-edit"></i>
                                 </div>
 
-                                <div matRipple matTooltip="See details?" matTooltipPosition="above"
-                                    class="pointer action-open p-2">
-                                    <i class="fa fa-align-justify"></i>
+                                <div (click)="onCaseDetails(case._id)" data-toggle="modal"
+                                    data-target="#caseDetailsModal" matRipple matTooltip="See case details?"
+                                    matTooltipPosition="above" class="pointer action-open p-2">
+                                    <i class="fa fa-paper-plane"></i>
                                 </div>
 
                                 <div (click)="onDeleteDialog(case._id)" matRipple class="pointer action-delete p-2"
                                     matTooltip="Delete case?" matTooltipPosition="above">
                                     <i class="fa fa-trash"></i>
                                 </div>
+
+                                <mat-menu #menu="matMenu" xPosition="before">
+                                    <ng-template matMenuContent>
+                                        <div class="card-body text-center text-mute p-0">
+                                            <ul class="list-group list-group-flush">
+
+                                                <li *ngIf="case.status  != '1'"
+                                                    (click)="changeStatus(case._id, statusData.isNew)" matRipple
+                                                    matRipple matTooltip="Change case status?"
+                                                    matTooltipPosition="before"
+                                                    class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                                    To New</li>
+
+                                                <li *ngIf="case.status  != '2'"
+                                                    (click)="changeStatus(case._id, statusData.isContacted)" matRipple
+                                                    matRipple matTooltip="Change case status?"
+                                                    matTooltipPosition="before"
+                                                    class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                                    To Contacted</li>
+
+                                                <li *ngIf="case.status  != '3'"
+                                                    (click)="changeStatus(case._id, statusData.isConfirmed)" matRipple
+                                                    matRipple matTooltip="Change case status?"
+                                                    matTooltipPosition="before"
+                                                    class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                                    To Confirmed</li>
+
+                                                <li *ngIf="case.status  != '4'"
+                                                    (click)="changeStatus(case._id, statusData.isQuarantined)" matRipple
+                                                    matRipple matTooltip="Change case status?"
+                                                    matTooltipPosition="before"
+                                                    class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                                    To Quarantined</li>
+
+                                                <li *ngIf="case.status  != '5'"
+                                                    (click)="changeStatus(case._id, statusData.isNotSick)" matRipple
+                                                    matRipple matTooltip="Change case status?"
+                                                    matTooltipPosition="before"
+                                                    class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                                    To Not Sick</li>
+
+                                                <li *ngIf="case.status  != '6'"
+                                                    (click)="changeStatus(case._id, statusData.isFake)" matRipple
+                                                    matRipple matTooltip="Change case status?"
+                                                    matTooltipPosition="before"
+                                                    class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                                    To Fake</li>
+
+                                            </ul>
+                                        </div>
+                                    </ng-template>
+                                </mat-menu>
                             </div>
                         </td>
                     </tr>
@@ -123,6 +187,135 @@
             </table>
             <div class="lead mt-4 text-muted font-italic d-flex justify-content-center" *ngIf="cases.length <= 0">No
                 case added yet</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="caseDetailsModal" tabindex="-1" role="dialog" aria-labelledby="caseDetailsModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-muted handy-card">
+            <div class="modal-header py-2">
+                <!-- <h5 class="modal-title text-green" id="exampleModalCenterTitle">Lagos State</h5> -->
+                <div (click)="onCloseModal()" type="button" class="close text-danger" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+            </div>
+            <div *ngIf="!case" class="modal-body py-5 px-4">
+                <div class="text-center py-5">
+                    <div class="spinner-border text-green" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="case" class="modal-body">
+                <div class="text-center pt-2 pb-3">
+                    <div class="h5 text-green">{{ case?.firstname | titlecase }}
+                        {{ case?.surname | titlecase }}
+                    </div>
+
+                    <div class="text-small text-danger">Id: {{ case?.caseId }}</div>
+                </div>
+
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Registered at</dt>
+                    <dd class="col-7">
+                        <div class="text-small mb-0 mt-1">
+                            {{ case?.registeredAt | date:'longDate' }} at {{ case?.registeredAt | date:'mediumTime' }}
+                        </div>
+                    </dd>
+                </dl>
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-small text-mute text-right mt-2 pl-4">Status</dt>
+                    <dd class="col-7 my-1">
+                        <div>
+                            <span [ngClass]="{'badge-warning':  case?.status  == '1',
+                'badge-info':  case?.status  == '2',
+                'badge-dark bg-handy':  case?.status  == '3', 
+                'badge-primary bg-green':  case?.status  == '4',  
+                'badge-secondary':  case?.status  == '5', 'badge-danger':  case?.status  == '6'}"
+                                class="badge badge-pill px-4 py-2 m-0">{{ case?.status |statusFormat }}
+                            </span>
+                        </div>
+                    </dd>
+                </dl>
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Phone number</dt>
+                    <dd class="col-7">
+                        <div class="text-small mb-0 mt-1">
+                            {{ case?.phoneNumber }}
+                        </div>
+                    </dd>
+                </dl>
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Date added</dt>
+                    <dd class="col-7">
+                        <div class="text-small mb-0 mt-1">
+                            {{ case.state | stateFormat }} </div>
+                    </dd>
+                </dl>
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-right">
+                        <div class="text-small text-mute mt-1 pl-4">LGA</div>
+                    </dt>
+                    <dd class="col-7">
+                        <div class="text-small mb-0 mt-1">
+                            {{ case.lga | titlecase }} Local Government
+                        </div>
+                    </dd>
+                </dl>
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-right">
+                        <div class="text-small text-mute mt-1 pl-4">Age</div>
+                    </dt>
+                    <dd class="col-7">
+                        <div class="text-small mb-0 mt-1">
+                            {{ case.dateOfBirth | ageCalculate }} year(s) old
+                        </div>
+                    </dd>
+                </dl>
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-right">
+                        <div class="text-small text-mute mt-1 pl-4">Address</div>
+                    </dt>
+                    <dd class="col-7">
+                        <div class="text-small mb-0 mt-1">
+                            {{ case.address }}
+                        </div>
+                    </dd>
+                </dl>
+                <hr class="m-0">
+                <dl class="row mb-0 pb-0">
+                    <dt class="col-5 text-right">
+                        <div class="text-small text-mute mt-1 pl-4">Symptoms</div>
+                    </dt>
+                    <dd class="col-7">
+                        <div class="text-small mb-0 mt-1">
+                            {{ case.symptoms }}
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer px-5">
+                <div class="h5 action-edit">
+                    <i class="fa fa-print"></i>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

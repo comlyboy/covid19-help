@@ -1,20 +1,18 @@
 // This file prevents non logged user from accessing some pages
 
-import { CanLoad, Route, UrlSegment, Router } from '@angular/router';
+import { CanLoad, Route, UrlSegment } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { Observable } from 'rxjs'
 
-import { NotificationService } from '../../shared/service/notification.service';
-import { NavigationService } from 'src/app/shared/service/navigation.service';
+import { AuthService } from './auth.service';
+import { NavigationService } from '../../shared/service/navigation.service';
 
 @Injectable()
 
 export class AuthGuard implements CanLoad {
     constructor(
         private authService: AuthService,
-        private navigationService: NavigationService,
-        public notificationService: NotificationService
+        private navigationService: NavigationService
     ) { }
 
 
@@ -24,7 +22,7 @@ export class AuthGuard implements CanLoad {
         const isAuth = this.authService.getIsAuthenticated();
         if (!isAuth) {
             this.navigationService.goToAuth();
-            this.notificationService.smallWarning('Log in to proceed');
+            // this.notificationService.smallWarning('Log in to proceed');
         }
         return isAuth;
     }

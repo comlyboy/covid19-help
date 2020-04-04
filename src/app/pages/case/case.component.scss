@@ -1,6 +1,6 @@
 .action-edit:hover {
     border-radius: 50% !important;
-    background-color: #edf1fa !important;
+    background-color: #edfaf0 !important;
     color: #12b886 !important;
 }
 
@@ -16,12 +16,11 @@
     color: #dc3545 !important;
 }
 
-
 .list-group-item-action {
     border-left: #377cc700 solid 5px;
 }
 
 .list-group-item-action:hover {
-    border-left: #4caf50 solid 5px;
-    background-color: rgba(229, 232, 236, 0.224);
+    border-left: #12b886 solid 5px;
+    background-color: #f7fdfa;
 }

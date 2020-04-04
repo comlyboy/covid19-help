@@ -39,38 +39,38 @@
             </ul>
 
         </div>
-        </ng-sidebar>
+    </ng-sidebar>
 
-        <div ng-sidebar-content>
-            <nav *ngIf="!userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
-                <div class="h5 mb-0">{{ title }}</div>
-            </nav>
-            <nav *ngIf="userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
-                <div class="d-flex">
-                    <div (click)="_toggleSidebar()" class="h5 mr-5 mb-0 pointer">
-                        <i class="fa fa-align-justify"></i>
+    <div ng-sidebar-content>
+        <nav *ngIf="!userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
+            <div class="h5 mb-0">{{ title }}</div>
+        </nav>
+        <nav *ngIf="userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
+            <div class="d-flex">
+                <div (click)="_toggleSidebar()" class="h5 mr-5 mb-0 pointer">
+                    <i class="fa fa-align-justify"></i>
+                </div>
+                <div class="h5 mb-0">NCDC-help</div>
+            </div>
+
+            <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h5 mb-0 ml-auto mr-4">
+                <i class="fa fa-user-circle"></i>
+            </div>
+            <mat-menu #menu="matMenu" xPosition="before">
+                <ng-template matMenuContent>
+                    <div class="card-body text-center text-mute p-0">
+                        <ul class="list-group list-group-flush">
+                            <li matRipple (click)="onLogout()"
+                                class="list-group-item list-group-item-action pointer h6 px-5 py-3">
+                                Logout</li>
+                            <li matRipple class="list-group-item list-group-item-action pointer h6 px-5 py-3">
+                                About</li>
+                        </ul>
                     </div>
-                    <div class="h5 mb-0">NCDC-help</div>
-                </div>
-
-                <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h5 mb-0 ml-auto mr-4">
-                    <i class="fa fa-user-circle"></i>
-                </div>
-                <mat-menu #menu="matMenu" xPosition="before">
-                    <ng-template matMenuContent>
-                        <div class="card-body text-center text-mute p-0">
-                            <ul class="list-group list-group-flush">
-                                <li matRipple (click)="onLogout()"
-                                    class="list-group-item list-group-item-action pointer h6 px-5 py-3">
-                                    Logout</li>
-                                <li matRipple class="list-group-item list-group-item-action pointer h6 px-5 py-3">
-                                    Help</li>
-                            </ul>
-                        </div>
-                    </ng-template>
-                </mat-menu>
-            </nav>
-            <router-outlet></router-outlet>
-        </div>
+                </ng-template>
+            </mat-menu>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
 
 </ng-sidebar-container>

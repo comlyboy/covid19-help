@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { IState } from '../../interfaces/state';
 import { ICase } from 'src/app/interfaces/case';
 import { IStateMetrics } from 'src/app/interfaces/metric';
+import { NotificationService } from 'src/app/shared/service/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class StateService {
   cases: ICase[] = [];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    public notificationService: NotificationService
   ) { }
 
 
@@ -51,8 +53,6 @@ export class StateService {
   };
 
 
-
-
   // ===========
 
   private stateCasesUpdated = new Subject<IStateMetrics>();
@@ -65,7 +65,6 @@ export class StateService {
     this.http
       .get<IStateMetrics>(`${this.API_URL._SERVER}case_by_state/${stateId}`)
       .subscribe(casesData => {
-        console.log(casesData);
         this.cases = casesData.cases;
         this.stateCasesUpdated.next({
           cases: [...this.cases],
@@ -77,5 +76,18 @@ export class StateService {
           totalFake: casesData.totalFake
         });
       });;
+  };
+
+
+  changeCaseStatus(caseId: string, status: number) {
+    this.http
+      .put(
+        `${this.API_URL._SERVER}case_status/${caseId}`,
+        {
+          status
+        }
+      ).subscribe((result: { message: string }) => {
+        this.notificationService.smallSuccess(result.message);
+      });
   };
 }

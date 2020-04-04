@@ -11,8 +11,6 @@ export class StatusPipe implements PipeTransform {
     };
 
     switch (value) {
-      case 0:
-        return "Is Fake";
 
       case 1:
         return "New case";
@@ -21,10 +19,16 @@ export class StatusPipe implements PipeTransform {
         return "Is Contacted";
 
       case 3:
-        return "is Confirmed";
+        return "Is Confirmed";
 
       case 4:
         return "Is Quanrantined";
+
+      case 5:
+        return "Is Not Sick";
+
+      case 6:
+        return "Is Fake";
 
       default:
         return value

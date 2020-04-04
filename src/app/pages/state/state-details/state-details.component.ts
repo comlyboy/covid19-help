@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { IState } from 'src/app/interfaces/state';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { StateService } from '../state.service';
-import { ICase } from 'src/app/interfaces/case';
+
 import { Subscription } from 'rxjs';
-import { DialogService } from 'src/app/shared/service/dialog.service';
+
+import { StateService } from '../state.service';
+import { ICase } from '../../../interfaces/case';
+import { IState } from '../../../interfaces/state';
+import { CaseService } from '../../case/case.service';
+import { DialogService } from '../../../shared/service/dialog.service';
+import { definedStatus } from '../../../shared/helper/status';
 
 @Component({
   selector: 'app-state-details',
@@ -12,10 +16,14 @@ import { DialogService } from 'src/app/shared/service/dialog.service';
   styleUrls: ['./state-details.component.scss']
 })
 export class StateDetailsComponent implements OnInit {
+  statusData = definedStatus;
+
   state: IState;
   stateId: string;
 
   cases: ICase[] = [];
+  case: ICase;
+
   totalCases: number = 0;
   totalNewCases: number = 0;
   totalContacted: number = 0;
@@ -23,11 +31,11 @@ export class StateDetailsComponent implements OnInit {
   totalQuanrantined: number = 0;
   totalFake: number = 0;
 
-
   stateSub: Subscription;
 
   constructor(
     private stateService: StateService,
+    private caseService: CaseService,
     private dialogService: DialogService,
     public route: ActivatedRoute
   ) { }
@@ -36,6 +44,25 @@ export class StateDetailsComponent implements OnInit {
   onDeleteDialog(caseId: string) {
     this.dialogService.caseDeleteDialog(caseId);
   };
+
+  onCloseModal() {
+    this.case = null;
+  };
+
+
+  onCaseDetails(caseId: string) {
+    this.caseService.getCaseDetails(caseId)
+      .subscribe(casesDetailsData => {
+        this.case = casesDetailsData;
+      });
+  }
+
+  changeStatus(caseId: string, status: number) {
+    this.caseService.changeCaseStatus(caseId, status);
+  }
+
+
+
 
   initContents() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {

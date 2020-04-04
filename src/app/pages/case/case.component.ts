@@ -4,6 +4,8 @@ import { PageEvent } from '@angular/material/paginator';
 
 import { Subscription } from 'rxjs';
 
+import { definedStatus } from '../../shared/helper/status';
+
 import { CaseService } from './case.service';
 import { ICase } from '../../interfaces/case';
 import { DialogService } from '../../shared/service/dialog.service';
@@ -14,8 +16,10 @@ import { DialogService } from '../../shared/service/dialog.service';
   styleUrls: ['./case.component.scss']
 })
 export class CaseComponent implements OnInit {
+  statusData = definedStatus;
 
   totalCases: number = 0;
+  case: ICase;
   cases: ICase[] = [];
 
   casesPerPage = 10;
@@ -36,6 +40,22 @@ export class CaseComponent implements OnInit {
 
   onSearch(form: NgForm) {
 
+  };
+
+  onCloseModal() {
+    this.case = null;
+  };
+
+
+  onCaseDetails(caseId: string) {
+    this.caseService.getCaseDetails(caseId)
+      .subscribe(casesDetailsData => {
+        this.case = casesDetailsData;
+      });
+  };
+
+  changeStatus(caseId: string, status: number) {
+    this.caseService.changeCaseStatus(caseId, status);
   }
 
 
@@ -46,7 +66,6 @@ export class CaseComponent implements OnInit {
   }
 
 
-
   initContent() {
     this.caseService.getCases(this.casesPerPage, this.currentPage);
     this.caseSub = this.caseService.getCasesUpdateListener()
@@ -54,7 +73,6 @@ export class CaseComponent implements OnInit {
         this.totalCases = casesData.totalCases;
         this.cases = casesData.cases;
       });
-
   }
 
   ngOnInit(): void {

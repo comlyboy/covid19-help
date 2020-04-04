@@ -14,6 +14,10 @@ export class NavigationService {
     this.router.navigate(["/auth"]);
   };
 
+  goToOn_boarding() {
+    this.router.navigate(["/on-boarding"]);
+  };
+
   goToDashboard() {
     this.router.navigate(["/dashboard"]);
   };
