@@ -10,7 +10,7 @@ body {
     margin: 0;
     font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Nuni !important;
     text-rendering: optimizeLegibility;
-    background-color: #e9ecef !important;
+    background-color: #eef5f1 !important;
 }
 
 * {
@@ -22,31 +22,21 @@ a:hover {
     text-decoration: none !important;
 }
 
-mat-icon {
-    vertical-align: middle !important;
-}
-
 .text-small {
     font-weight: 600 !important;
     font-size: 13px !important;
 }
 
+.text-mute {
+    color: #8189a9 !important;
+}
 
-.text-handy {
-    color: #4a6ee0 !important;
+.text-green {
+    color: #12b886 !important;
 }
 
 .bg-handy {
     background-color: #4a6ee0 !important;
-}
-
-.btn-handy {
-    background-color: #4a6ee0 !important;
-    color: white !important;
-}
-
-.btn-handy:hover {
-    background-color: #224bd5 !important;
 }
 
 .btn-green {
@@ -61,10 +51,6 @@ mat-icon {
 .bg-green {
     background-color: #12b886 !important;
     border-color: #12b886 !important;
-}
-
-.text-green {
-    color: #12b886 !important;
 }
 
 .pointer {

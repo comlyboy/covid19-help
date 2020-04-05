@@ -32,25 +32,26 @@ export class HomeComponent implements OnInit {
     private caseService: CaseService
   ) { }
 
-  
 
-  onSubmitCase(form: NgForm) {  
+
+  onSubmitQuestionaire(form: NgForm) {
     const pre = "+234"
     if (form.invalid) {
       return;
     }
 
-    this.caseService.addCase
-      (
-        form.value.inputFirstname,
-        form.value.inputSurname,
-        pre + form.value.inputPhoneNumber,
-        form.value.inputStateName,
-        form.value.inputLGA,
-        form.value.inputDOB,
-        form.value.inputAddress,
-        form.value.inputSymptoms
-      );
+    console.log(form.value.isCough)
+    // this.caseService.addCase
+    //   (
+    //     form.value.inputFirstname,
+    //     form.value.inputSurname,
+    //     pre + form.value.inputPhoneNumber,
+    //     form.value.inputStateName,
+    //     form.value.inputLGA,
+    //     form.value.inputDOB,
+    //     form.value.inputAddress,
+    //     form.value.inputSymptoms
+    //   );
 
   }
 
