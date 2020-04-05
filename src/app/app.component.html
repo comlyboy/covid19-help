@@ -42,9 +42,9 @@
     </ng-sidebar>
 
     <div ng-sidebar-content>
-        <nav *ngIf="!userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
+        <!-- <nav *ngIf="!userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
             <div class="h5 mb-0">{{ title }}</div>
-        </nav>
+        </nav> -->
         <nav *ngIf="userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
             <div class="d-flex">
                 <div (click)="_toggleSidebar()" class="h5 mr-5 mb-0 pointer">

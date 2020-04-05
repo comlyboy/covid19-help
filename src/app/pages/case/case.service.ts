@@ -21,7 +21,7 @@ export class CaseService {
   constructor(
     private http: HttpClient,
     public notificationService: NotificationService,
-    public navigationService: NavigationService,
+    public navigationService: NavigationService
   ) { }
 
 

@@ -70,19 +70,21 @@ export class StateDetailsComponent implements OnInit {
       this.stateService.getStateDetails(this.stateId)
         .subscribe((stateData) => {
           this.state = stateData;
+          
+          this.stateService.getStateCases(this.stateId);
+          this.stateSub = this.stateService.getStateCasesUpdateListener()
+            .subscribe((caseData) => {
+              this.cases = caseData.cases;
+              this.totalCases = caseData.totalCases;
+              this.totalNewCases = caseData.totalNewCases;
+              this.totalContacted = caseData.totalContacted;
+              this.totalConfirmed = caseData.totalConfirmed;
+              this.totalQuanrantined = caseData.totalQuanrantined;
+              this.totalFake = caseData.totalFake;
+            });
         });
 
-      this.stateService.getStateCases(this.stateId);
-      this.stateSub = this.stateService.getStateCasesUpdateListener()
-        .subscribe((caseData) => {
-          this.cases = caseData.cases;
-          this.totalCases = caseData.totalCases;
-          this.totalNewCases = caseData.totalNewCases;
-          this.totalContacted = caseData.totalContacted;
-          this.totalConfirmed = caseData.totalConfirmed;
-          this.totalQuanrantined = caseData.totalQuanrantined;
-          this.totalFake = caseData.totalFake;
-        });
+
     });
   }
 
