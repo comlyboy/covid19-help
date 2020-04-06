@@ -1,9 +1,9 @@
 <div class="container-fluid mt-5 py-4">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div class="text-center mb-5 pl-3">
+            <div class="text-center mb-5">
                 <div class="h3 mb-3 text-green">NCDC Help</div>
-                <div class="h5 text-mute">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
+                <div class="h6 text-mute">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
                     libero
                     optio
                     dolorum ipsum eius ut deserunt laboriosam eveniet tenetur, non accusantium maiores est voluptate
@@ -14,47 +14,63 @@
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="d-flex justify-content-center">
-                <div class="card handy-card" style="width: 30rem;">
+                <div class="card handy-card" style="width: 35rem;">
                     <div class="card-header h5 text-green bg-transparent">Check your status</div>
                     <form (submit)="onSubmitQuestionaire(form)" #form="ngForm">
                         <div class="card-body text-muted">
-                            <div class="small mb-3">Kindly fill out this form to know if you are at risk of having
-                                corona
+
+                            <div class="small mb-3">Kindly tick out this form to know if you are at risk of being
+                                infected with COVID-19
                             </div>
+
                             <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input border-success" name="isFever"
-                                    id="customControlValidation1" required>
-                                <label class="custom-control-label" for="customControlValidation1">Do you have fever?
+                                <input type="checkbox" class="custom-control-input" name="isFever" ngModel
+                                    id="feverCtrl" required>
+                                <label class="custom-control-label" for="feverCtrl">Do you have fever?
                                 </label>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input border-success" name="isCough"
-                                    ngModel id="customControlValidation1">
-                                <label class="custom-control-label" for="customControlValidation1">Do you have
+                                <input type="checkbox" class="custom-control-input" name="isCough" ngModel
+                                    id="coughCtrl">
+                                <label class="custom-control-label" for="coughCtrl">Do you have
                                     cough?</label>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input border-success" name="isBreathing"
-                                    id="customControlValidation1" required>
-                                <label class="custom-control-label" for="customControlValidation1">Do you have
+                                <input type="checkbox" class="custom-control-input" name="isBlockedNose" ngModel
+                                    id="runnyCtrl">
+                                <label class="custom-control-label" for="runnyCtrl">Are you experiencing nose blockage
+                                    or runny nose?</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" name="isTired" ngModel
+                                    id="tiredCtrl">
+                                <label class="custom-control-label" for="tiredCtrl">Are you experiencing
+                                    tiredness?</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" name="isDifficultBreathing" ngModel
+                                    id="breathCtrl" required>
+                                <label class="custom-control-label" for="breathCtrl">Do you have
                                     difficulty breathing?</label>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input border-success" name="isGotoCountry"
-                                    id="customControlValidation1" required>
-                                <label class="custom-control-label" for="customControlValidation1">Do you have a travel
+                                <input type="checkbox" class="custom-control-input" name="isGotoCountry" ngModel
+                                    id="goCountryCtrl" required>
+                                <label class="custom-control-label" for="goCountryCtrl">Do you have a travel
                                     history to a COVID-19 infected country or countries?
                                 </label>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input border-success"
-                                    name="isDirectContact" id="customControlValidation1" required>
-                                <label class="custom-control-label" for="customControlValidation1">Do you have direct
-                                    contact or is taking care of a positive COVID-19 patients?</label>
+                                <input type="checkbox" class="custom-control-input" ngModel name="isDirectContact"
+                                    id="customControlValidation1" required>
+                                <label class="custom-control-label" for="customControlValidation1">Do you have close
+                                    contact or taking care of a positive COVID-19 patients?</label>
                             </div>
 
                         </div>
@@ -67,3 +83,33 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+<!-- <div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<div class="modal fade" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-muted handy-card">
+            <div class="modal-header py-2">
+                <div type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, dignissimos ea quasi impedit rerum,
+                odit esse magnam perferendis officiis voluptatum dicta, ad corrupti delectus placeat ab autem
+                cupiditate? Ab quisquam modi soluta perspiciatis delectus, laudantium perferendis quidem dolorem quae
+                rerum! Maiores sit nesciunt illum et, ullam velit, assumenda aut hic odio minus commodi ipsum dolor
+                libero beatae quas? Soluta deleniti id aut, ut eveniet libero consequuntur voluptate quae.
+            </div>
+            <div class="modal-footer px-5">
+                <div class="h5 action-edit">
+                    <i class="fa fa-print"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
