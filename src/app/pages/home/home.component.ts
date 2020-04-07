@@ -19,7 +19,7 @@ import { StorageService } from 'src/app/shared/service/storage.service';
 })
 export class HomeComponent implements OnInit {
   startDate = new Date(1980, 0, 1);
-  alertt: boolean = true;
+  alertt: boolean = false;
 
   states: IState[] = [];
   stateSub: Subscription;
