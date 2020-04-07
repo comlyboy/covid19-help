@@ -10,6 +10,7 @@ import { StateService } from '../state/state.service';
 import { AuthService } from '../auth/auth.service';
 import { NavigationService } from '../../shared/service/navigation.service';
 import { NotificationService } from '../../shared/service/notification.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -18,25 +19,31 @@ import { NotificationService } from '../../shared/service/notification.service';
 })
 export class HomeComponent implements OnInit {
   startDate = new Date(1980, 0, 1);
-
+  alertt: boolean = true;
 
   states: IState[] = [];
   stateSub: Subscription;
   LGAs: any[];
   isAuthenticated: boolean;
 
+  resultPercent: number = 0;
+
   constructor(
     public authService: AuthService,
     private stateService: StateService,
+    private storageService: StorageService,
     private navigationService: NavigationService,
     private notificationService: NotificationService
   ) { }
 
 
-
+  onClose() {
+    this.alertt = false;
+  }
 
   onSubmitQuestionaire(form: NgForm) {
-    if (!form.dirty || !form.pristine) {
+
+    if (!form.dirty) {
       return;
     };
 
@@ -50,6 +57,7 @@ export class HomeComponent implements OnInit {
         form.value.isGotoCountry,
         form.value.isDirectContact
       );
+
     form.resetForm();
   }
 
@@ -73,6 +81,10 @@ export class HomeComponent implements OnInit {
     let isDirectContact = 0;
     let sum = 0;
 
+    if (goneCountry || directContact) {
+      this.navigationService.goToOn_boarding();
+      return;
+    }
 
     if (fever) {
       isFever = 2
@@ -97,14 +109,16 @@ export class HomeComponent implements OnInit {
     }
     sum = isFever + isCough + isBlockedNose + isTired + isDifficultBreathing + isGotoCountry + isDirectContact;
 
-    let result = sum / totalPoint * 100
+    this.resultPercent = sum / totalPoint * 100
 
-    this.notificationService.smallSuccess(`${result}%`);
-    if (result >= 50) {
+    if (this.resultPercent >= 50) {
       this.notificationService.infected('You might have contacted COVID-19');
       this.navigationService.goToOn_boarding();
     } else {
-      this.notificationService.notInfected('Goodnews!!!');
+      this.alertt = true;
+      setTimeout(() => {
+        this.alertt = false;
+      }, 5000);
     }
   }
 

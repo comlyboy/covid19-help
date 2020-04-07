@@ -1,17 +1,23 @@
 <div class="container-fluid mt-5 py-4">
+
+
+
+
+
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="px-xl-5 mb-5">
                 <div class="h3 mb-3 text-green">Hi</div>
                 <div class="h5 text-mute">Welcome to NCDC help page.</div>
-                <p class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique delectus quisquam eos tempore
+                <p class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique delectus quisquam eos
+                    tempore
                     iste officiis pariatur alias, magni nihil ratione! Non quidem dolores iure porro hic. Sint impedit
                     voluptatum id?</p>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="d-flex justify-content-center">
-                <div class="card handy-card" style="width: 35rem;">
+                <div *ngIf="!alertt" class="card handy-card" style="width: 35rem;">
                     <div class="card-header h5 text-green bg-transparent">Check your status</div>
                     <form (submit)="onSubmitQuestionaire(Qform)" #Qform="ngForm">
                         <div class="card-body text-muted">
@@ -76,6 +82,48 @@
                             Submit
                         </button>
                     </form>
+                </div>
+
+                <div *ngIf="alertt" class="card handy-card" style="width: 35rem;">
+                    <!-- <div class="card-header h5 text-green bg-transparent">Check your status</div> -->
+                    <div class="card-body text-muted">
+                        <div class="h6 text-right pointer">
+                            <mat-icon matTooltip="Close?" matTooltipPosition="before" (click)="onClose()"
+                                class="text-danger">clear</mat-icon>
+                        </div>
+
+                        <div class="h4 text-green">Goodnews!!!</div>
+                        <p>Your survey result came out <span class="h6 mb-0 text-green">{{ resultPercent }}/100</span>,
+                            meaning that
+                            your chosen symptoms
+                            cannot yet be regarded as COVID-19 symptoms</p>
+                        <p class="mb-0">However, you are advised to keep the social distancing/stay@home directive given
+                            by the NCDC
+                            so as not to infect others, and if you
+                            notice if the symptoms persist, you can revisit this form to.</p>
+
+                        <ul class="list-group list-group-flush px-4">
+                            <li class="">
+                                <i class="fa fa-square"></i>
+                                Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Accusantium
+                                repudiandae fugiat cum. Culpa nesciunt quo placeat, totam tempora fuga nam
+                                voluptates incidunt laboriosam rerum eos et repudiandae. Tenetur, facere atque!
+                            </li>
+                            <li class="">
+                                Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Accusantium
+                                repudiandae fugiat cum. Culpa nesciunt quo placeat, totam tempora fuga nam
+                                voluptates incidunt laboriosam rerum eos et repudiandae. Tenetur, facere atque!
+                            </li>
+                            <li class="">
+                                Lorem ipsum dolor sit amet consectetur adipisicing
+                                elit. Accusantium
+                                repudiandae fugiat cum. Culpa nesciunt quo placeat, totam tempora fuga nam
+                                voluptates incidunt laboriosam rerum eos et repudiandae. Tenetur, facere atque!
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

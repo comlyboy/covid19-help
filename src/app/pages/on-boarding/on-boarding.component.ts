@@ -15,6 +15,7 @@ import _ from 'underscore';
 })
 export class OnBoardingComponent implements OnInit {
   startDate = new Date(1980, 0, 1);
+  alertt: boolean = true;
 
   states: IState[] = [];
   stateSub: Subscription;
@@ -46,17 +47,17 @@ export class OnBoardingComponent implements OnInit {
       return;
     }
 
-    this.caseService.addCase
-      (
-        form.value.inputFirstname,
-        form.value.inputSurname,
-        pre + form.value.inputPhoneNumber,
-        form.value.inputStateName,
-        form.value.inputLGA,
-        form.value.inputDOB,
-        form.value.inputAddress,
-        form.value.inputSymptoms
-      );
+    // this.caseService.addCase
+    //   (
+    //     form.value.inputFirstname,
+    //     form.value.inputSurname,
+    //     pre + form.value.inputPhoneNumber,
+    //     form.value.inputStateName,
+    //     form.value.inputLGA,
+    //     form.value.inputDOB,
+    //     form.value.inputAddress,
+    //     form.value.inputSymptoms
+    //   );
 
   }
 
@@ -76,6 +77,9 @@ export class OnBoardingComponent implements OnInit {
 
   ngOnInit() {
     this.initContents();
+    setTimeout(() => {
+      this.alertt = false
+    }, 10000);
   }
 
 }
