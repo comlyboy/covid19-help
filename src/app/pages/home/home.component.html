@@ -1,22 +1,19 @@
 <div class="container-fluid mt-5 py-4">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div class="text-center mb-5">
-                <div class="h3 mb-3 text-green">NCDC Help</div>
-                <div class="h6 text-mute">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quidem,
-                    libero
-                    optio
-                    dolorum ipsum eius ut deserunt laboriosam eveniet tenetur, non accusantium maiores est voluptate
-                    eligendi? Iure rem ullam distinctio enim illum aspernatur, sit aut ad minima, exercitationem
-                    sapiente
-                    beatae deleniti.</div>
+            <div class="px-xl-5 mb-5">
+                <div class="h3 mb-3 text-green">Hi</div>
+                <div class="h5 text-mute">Welcome to NCDC help page.</div>
+                <p class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique delectus quisquam eos tempore
+                    iste officiis pariatur alias, magni nihil ratione! Non quidem dolores iure porro hic. Sint impedit
+                    voluptatum id?</p>
             </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
             <div class="d-flex justify-content-center">
                 <div class="card handy-card" style="width: 35rem;">
                     <div class="card-header h5 text-green bg-transparent">Check your status</div>
-                    <form (submit)="onSubmitQuestionaire(form)" #form="ngForm">
+                    <form (submit)="onSubmitQuestionaire(Qform)" #Qform="ngForm">
                         <div class="card-body text-muted">
 
                             <div class="small mb-3">Kindly tick out this form to know if you are at risk of being
@@ -74,7 +71,8 @@
                             </div>
 
                         </div>
-                        <button type="submit" matRipple class="card-footer btn btn-lg w-100 btn-green">
+                        <button [disabled]="!Qform.dirty" type="submit" matRipple
+                            class="card-footer btn btn-lg w-100 btn-green">
                             Submit
                         </button>
                     </form>
@@ -83,33 +81,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-<!-- <div class="backdrop" [ngStyle]="{'display':display}"></div>
-
-<div class="modal fade" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content text-muted handy-card">
-            <div class="modal-header py-2">
-                <div type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </div>
-            </div>
-            <div class="modal-body">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, dignissimos ea quasi impedit rerum,
-                odit esse magnam perferendis officiis voluptatum dicta, ad corrupti delectus placeat ab autem
-                cupiditate? Ab quisquam modi soluta perspiciatis delectus, laudantium perferendis quidem dolorem quae
-                rerum! Maiores sit nesciunt illum et, ullam velit, assumenda aut hic odio minus commodi ipsum dolor
-                libero beatae quas? Soluta deleniti id aut, ut eveniet libero consequuntur voluptate quae.
-            </div>
-            <div class="modal-footer px-5">
-                <div class="h5 action-edit">
-                    <i class="fa fa-print"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->

@@ -36,6 +36,9 @@ export class HomeComponent implements OnInit {
 
 
   onSubmitQuestionaire(form: NgForm) {
+    if (!form.dirty || !form.pristine) {
+      return;
+    };
 
     this.questionareCalculation
       (
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit {
         form.value.isGotoCountry,
         form.value.isDirectContact
       );
-
+    form.resetForm();
   }
 
 

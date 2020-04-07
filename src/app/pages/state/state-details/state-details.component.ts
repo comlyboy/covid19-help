@@ -53,15 +53,16 @@ export class StateDetailsComponent implements OnInit {
   onCaseDetails(caseId: string) {
     this.caseService.getCaseDetails(caseId)
       .subscribe(casesDetailsData => {
-        this.case = casesDetailsData;
+        setTimeout(() => {
+          
+          this.case = casesDetailsData;
+        }, 3000);
       });
   }
 
   changeStatus(caseId: string, status: number) {
     this.caseService.changeCaseStatus(caseId, status);
   }
-
-
 
 
   initContents() {
@@ -83,7 +84,6 @@ export class StateDetailsComponent implements OnInit {
               this.totalFake = caseData.totalFake;
             });
         });
-
 
     });
   }

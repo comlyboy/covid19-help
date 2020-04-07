@@ -57,6 +57,7 @@ export class NotificationService {
       timer: 7000
 
     })
+
   }
 
   infected(message) {
