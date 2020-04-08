@@ -18,7 +18,7 @@ import { DialogService } from '../../shared/service/dialog.service';
 export class CaseComponent implements OnInit {
   statusData = definedStatus;
 
-  totalCases: number = 0;
+  totalCases = 0;
   case: ICase;
   cases: ICase[] = [];
 
@@ -40,11 +40,11 @@ export class CaseComponent implements OnInit {
 
   onSearch(form: NgForm) {
 
-  };
+  }
 
   onCloseModal() {
     this.case = null;
-  };
+  }
 
 
   onCaseDetails(caseId: string) {
@@ -52,7 +52,7 @@ export class CaseComponent implements OnInit {
       .subscribe(casesDetailsData => {
         this.case = casesDetailsData;
       });
-  };
+  }
 
   changeStatus(caseId: string, status: number) {
     this.caseService.changeCaseStatus(caseId, status);

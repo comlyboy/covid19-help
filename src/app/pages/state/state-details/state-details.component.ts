@@ -24,12 +24,12 @@ export class StateDetailsComponent implements OnInit {
   cases: ICase[] = [];
   case: ICase;
 
-  totalCases: number = 0;
-  totalNewCases: number = 0;
-  totalContacted: number = 0;
-  totalConfirmed: number = 0;
-  totalQuanrantined: number = 0;
-  totalFake: number = 0;
+  totalCases = 0;
+  totalNewCases = 0;
+  totalContacted = 0;
+  totalConfirmed = 0;
+  totalQuanrantined = 0;
+  totalFake = 0;
 
   stateSub: Subscription;
 
@@ -43,20 +43,17 @@ export class StateDetailsComponent implements OnInit {
 
   onDeleteDialog(caseId: string) {
     this.dialogService.caseDeleteDialog(caseId);
-  };
+  }
 
   onCloseModal() {
     this.case = null;
-  };
+  }
 
 
   onCaseDetails(caseId: string) {
     this.caseService.getCaseDetails(caseId)
       .subscribe(casesDetailsData => {
-        setTimeout(() => {
-          
-          this.case = casesDetailsData;
-        }, 3000);
+        this.case = casesDetailsData;
       });
   }
 
@@ -71,7 +68,7 @@ export class StateDetailsComponent implements OnInit {
       this.stateService.getStateDetails(this.stateId)
         .subscribe((stateData) => {
           this.state = stateData;
-          
+
           this.stateService.getStateCases(this.stateId);
           this.stateSub = this.stateService.getStateCasesUpdateListener()
             .subscribe((caseData) => {
@@ -90,7 +87,12 @@ export class StateDetailsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.initContents()
+    this.initContents();
+  }
+
+  ngOndestroy() {
+    this.stateSub.unsubscribe();
+    this.case = null;
   }
 
 }
