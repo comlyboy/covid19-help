@@ -4,6 +4,7 @@
     <ng-sidebar class="sidebar" allowSidebarBackdropControl="false" autoCollapseWidth="767" mode="push"
         [opened]="_opened">
         <div *ngIf="userIsAuthenticated" class="sidebar-content align-items-start bd-highlight">
+            
             <ul class="py-5 mt-2 pl-0 mb-5 bd-highlight">
                 <hr class="m-0">
                 <div class="text-center my-4">
@@ -38,20 +39,6 @@
                 </li>
             </ul>
 
-            <div class="mt-auto bd-highlight">Flex item</div>
-            <!-- 
-            <hr class="mb-0">
-            <div class="d-flex justify-content-around py-2 text-muted">
-                <div matRipple matTooltip="About" matTooltipPosition="above" class="h6 pointer extra mb-0 p-2">
-                    <mat-icon>info</mat-icon>
-                </div>
-                <div matRipple matTooltip="FAQ" matTooltipPosition="above" class="h6 pointer extra mb-0 p-2">
-                    <mat-icon>help_outline</mat-icon>
-                </div>
-                <div matRipple matTooltip="Help" matTooltipPosition="above" class="h6 pointer extra mb-0 p-2">
-                    <mat-icon>question_answer</mat-icon>
-                </div>
-            </div> -->
         </div>
     </ng-sidebar>
 

@@ -50,10 +50,7 @@ export class CaseComponent implements OnInit {
   onCaseDetails(caseId: string) {
     this.caseService.getCaseDetails(caseId)
       .subscribe(casesDetailsData => {
-        setTimeout(() => {
-
-          this.case = casesDetailsData;
-        }, 3000);
+        this.case = casesDetailsData;
       });
   };
 
@@ -80,6 +77,12 @@ export class CaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.initContent();
+  }
+
+
+  ngOndestroy() {
+    this.caseSub.unsubscribe();
+    this.case = null;
   }
 
 }
