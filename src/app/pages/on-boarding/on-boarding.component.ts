@@ -47,17 +47,17 @@ export class OnBoardingComponent implements OnInit {
       return;
     }
 
-    // this.caseService.addCase
-    //   (
-    //     form.value.inputFirstname,
-    //     form.value.inputSurname,
-    //     pre + form.value.inputPhoneNumber,
-    //     form.value.inputStateName,
-    //     form.value.inputLGA,
-    //     form.value.inputDOB,
-    //     form.value.inputAddress,
-    //     form.value.inputSymptoms
-    //   );
+    this.caseService.addCase
+      (
+        form.value.inputFirstname,
+        form.value.inputSurname,
+        pre + form.value.inputPhoneNumber,
+        form.value.inputStateName,
+        form.value.inputLGA,
+        form.value.inputDOB,
+        form.value.inputAddress,
+        form.value.inputSymptoms
+      );
 
   }
 

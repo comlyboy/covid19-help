@@ -51,15 +51,17 @@ export class AuthComponent implements OnInit {
       form.value.inputState,
       form.value.inputPassword,
     );
-    // this.viewMode = "login"
+    this.viewMode = "login"
   };
 
-  onForgetPassword(form: NgForm) {
-    // this.authService.createUser(
+  onNaviToSignup() {
 
-    //   form.value.inputPhoneNumber
-
-    // );
+    this.stateService.getStates()
+      .subscribe(stateData => {
+        let sorted = _.sortBy(stateData, 'state');
+        this.states = sorted;
+      });
+    this.viewMode = 'register';
   };
 
 
@@ -68,13 +70,6 @@ export class AuthComponent implements OnInit {
     if (this.isAuthenticated) {
       this.navigationService.goToDashboard();
     };
-
-
-    this.stateService.getStates()
-      .subscribe(stateData => {
-        let sorted = _.sortBy(stateData, 'state');
-        this.states = sorted;
-      });
 
 
   };

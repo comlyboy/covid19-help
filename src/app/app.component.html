@@ -39,7 +39,7 @@
             </ul>
 
             <div class="mt-auto bd-highlight">Flex item</div>
-<!-- 
+            <!-- 
             <hr class="mb-0">
             <div class="d-flex justify-content-around py-2 text-muted">
                 <div matRipple matTooltip="About" matTooltipPosition="above" class="h6 pointer extra mb-0 p-2">
@@ -58,6 +58,7 @@
     <div ng-sidebar-content>
         <nav *ngIf="!userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
             <div class="h5 mb-0">{{ title }}</div>
+            <a routerLink="/auth" class="h5 mb-0 ml-auto mr-3 pointer text-green">Login</a>
         </nav>
         <nav *ngIf="userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
             <div class="d-flex">

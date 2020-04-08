@@ -52,7 +52,7 @@ export class AuthService {
       password: password,
     };
 
-    this.http.post(`${this.API_URL}user/signup`, signupData)
+    this.http.post(`${this.API_URL._SERVER}user/signup`, signupData)
       .subscribe(response => {
         this.notificationService.success('Registered successfully');
       }, error => {

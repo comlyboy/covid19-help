@@ -1,9 +1,9 @@
-<div class="container-fluid contain p-5 d-flex justify-content-center">
+<div *ngIf="viewMode=='login'" class=" container-fluid contain p-5 d-flex justify-content-center">
 
     <div class="card mt-5 handy-card text-center" style="width: 30rem;">
-        <div class="card-header h5 text-green bg-transparent">Check your status</div>
+        <div class="card-header h5 text-green bg-transparent">Login</div>
         <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
-            <div class="card-body py-5 text-muted">
+            <div class="card-body text-muted">
 
                 <div class="h6 text-left mb-1">Username</div>
                 <div class="input-group">
@@ -53,6 +53,9 @@
                     </div>
                 </div>
 
+                <p class="my-4">Don't have an Account?</p>
+                <a class="h5 pointer text-green" (click)="onNaviToSignup()">Register</a>
+
             </div>
             <button [disabled]="!loginForm.valid" type="submit" matRipple
                 class="card-footer btn btn-lg w-100 btn-green">
@@ -64,15 +67,16 @@
 </div>
 
 
-<!--<div class="container-fluid contain p-5 d-flex justify-content-center">
-    <div class="card mt-5 handy-card text-center" style="width: 40rem;">
+<div *ngIf="viewMode == 'register'" class="container-fluid contain p-5 d-flex justify-content-center">
+    <div class="card mt-5 handy-card text-center" style="width: 30rem;">
         <div class="card-header h5 text-green bg-transparent">Register</div>
         <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
-            <div class="card-body text-mute py-5">
+            <div class="card-body text-mute">
                 <div class="row">
 
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <div class="input-group mt-2">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
+                        <div class="h6 text-left mt-4 mb-1">Username</div>
+                        <div class="input-group">
                             <div class="input-group-prepend bg-light" *ngIf="userName.touched && userName.valid">
                                 <span class="input-group-text bg-white">
                                     <mat-icon class="text-green">done_all</mat-icon>
@@ -96,35 +100,37 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <div class="input-group mt-2">
-                            <div class="input-group-prepend bg-light" *ngIf="branch.touched && branch.valid">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
+                        <div class="h6 text-left mt-4 mb-1">State</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-light" *ngIf="state.touched && state.valid">
                                 <span class="input-group-text bg-white">
                                     <mat-icon class="text-green">done_all</mat-icon>
                                 </span>
                             </div>
-                            <div class="input-group-prepend bg-light" *ngIf="branch.touched && branch.invalid">
+                            <div class="input-group-prepend bg-light" *ngIf="state.touched && state.invalid">
                                 <span class="input-group-text bg-white">
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <select class="form-control form-control-lg" name="inputBranch" ngModel required
-                                #branch="ngModel">
+                            <select class="form-control form-control-lg" name="inputState" ngModel required
+                                #state="ngModel">
                                 <option selected value="">State...</option>
                                 <option *ngFor="let state of states" [value]="state.alias">
                                     {{  state.state | titlecase }}
                                 </option>
                             </select>
                         </div>
-                        <div class="alert alert-danger p-1 m-0" *ngIf="branch.touched && !branch.valid">
-                            <div *ngIf="branch.errors.required">
+                        <div class="alert alert-danger p-1 m-0" *ngIf="state.touched && !state.valid">
+                            <div *ngIf="state.errors.required">
                                 This field is required.
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="input-group mt-2">
+                        <div class="h6 text-left mt-4 mb-1">Password</div>
+                        <div class="input-group">
                             <div class="input-group-prepend bg-light" *ngIf="password.touched && password.valid">
                                 <span class="input-group-text bg-white">
                                     <mat-icon class="text-green">done_all</mat-icon>
@@ -147,8 +153,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
+                <p class="mt-3">Already have an Account?</p>
+                <a class="h5 pointer text-green" (click)="viewMode = 'login'">Login</a>
+
             </div>
             <button [disabled]="!signupForm.valid" type="submit" matRipple
                 class="card-footer btn btn-lg w-100 btn-green">
@@ -157,4 +166,4 @@
         </form>
 
     </div>
-</div> -->
+</div>
