@@ -18,8 +18,6 @@ import { PrintService } from 'src/app/shared/service/print.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  printId = 'myTableElementId';
-
   startDate = new Date(1980, 0, 1);
   alertt = false;
 
@@ -46,7 +44,7 @@ export class HomeComponent implements OnInit {
 
 
   printt(classId: string) {
-    this.printService.printPageImage(this.printId);
+    // this.printService.printPageImage(this.printId);
   }
 
 
@@ -126,7 +124,7 @@ export class HomeComponent implements OnInit {
       this.alertt = true;
       setTimeout(() => {
         this.alertt = false;
-      }, 10000);
+      }, 20000);
     }
   }
 

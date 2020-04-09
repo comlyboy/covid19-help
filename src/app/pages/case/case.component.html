@@ -23,9 +23,9 @@
     </form>
 </div> -->
 
-<div class="container">
+<!-- <div class="container">
     <button class="btn btn-green" (click)="printt('tableP')">Print</button>
-</div>
+</div> -->
 
 <div class="container-fluid my-2">
     <table id="tableP"
@@ -153,7 +153,7 @@
 <!-- Modal -->
 <div class="modal" id="caseDetailsModal" tabindex="-1" role="dialog" aria-labelledby="caseDetailsModalTitle"
     aria-hidden="true">
-    <div class="modal-dialog animated zoomIn fast modal-dialog-centered" role="document">
+    <div id="modalP" class="modal-dialog animated zoomIn fast modal-dialog-centered" role="document">
         <div class="modal-content text-muted handy-card">
             <div class="modal-header py-2">
                 <!-- <h5 class="modal-title text-green" id="exampleModalCenterTitle">Lagos State</h5> -->
@@ -171,11 +171,11 @@
             </div>
             <div *ngIf="case" class="modal-body">
                 <div class="text-center pt-2 pb-3">
-                    <div class="d-flex justify-content-center">
+                    <!-- <div class="d-flex justify-content-center">
                         <ngx-avatar size="50" name="{{ case?.firstname }}
                         {{ case?.surname }}">
                         </ngx-avatar>
-                    </div>
+                    </div> -->
                     <div class="h5 text-green">{{ case?.firstname | titlecase }}
                         {{ case?.surname | titlecase }}
                     </div>
@@ -270,7 +270,7 @@
                 </dl>
             </div>
             <div class="modal-footer px-5">
-                <div (click)="printt('caseDetailsModal')" class="h5 action-edit">
+                <div (click)="printt('modalP')" class="h5 action-edit">
                     <i class="fa fa-print"></i>
                 </div>
 

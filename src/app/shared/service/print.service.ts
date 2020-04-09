@@ -8,7 +8,7 @@ import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 export class PrintService {
 
   printDate = (new Date()).toString().split(' ').splice(1, 3).join('_');
-  printTime = new Date().getTime().toLocaleString();
+  printTime = new Date().getTime();
 
   constructor(
     private exportAsService: ExportAsService
@@ -22,7 +22,7 @@ export class PrintService {
     };
 
     // download the file using old school javascript method
-    this.exportAsService.save(exportAsConfig, `case_export_${this.printDate}_${this.printTime}`)
+    this.exportAsService.save(exportAsConfig, `case_export_${this.printDate}`)
       .subscribe(() => {
       });
   }
@@ -35,7 +35,7 @@ export class PrintService {
     };
 
     // download the file using old school javascript method
-    this.exportAsService.save(exportAsConfig, `case_export_${this.printDate}_${this.printTime}`)
+    this.exportAsService.save(exportAsConfig, `case_export_${this.printDate}`)
       .subscribe(() => {
       });
 

@@ -14,7 +14,8 @@ import { NavigationService } from 'src/app/shared/service/navigation.service';
 export class CaseService {
 
   private API_URL = environment;
-  cases: ICase[] = [];
+  private cases: ICase[] = [];
+  casse: ICase;
 
 
 
@@ -49,14 +50,14 @@ export class CaseService {
 
 
     this.http.post(`${this.API_URL._SERVER}case`, caseData)
-      .subscribe(response => {
+      .subscribe(responseData => {
         this.notificationService.success(`Success!!!`);
+        console.log(responseData);
+        // responseData = this.casse;
       }, error => {
-        console.log(error.message)
+        console.log(error.message);
       });
-  };
-
-
+  }
 
   // ===========
 
@@ -84,11 +85,11 @@ export class CaseService {
           totalCases: casesData.totalCases
         });
       });
-  };
+  }
 
 
   getCaseDetails(caseId: string) {
-    return this.http.get<ICase>(`${this.API_URL._SERVER}case/${caseId}`)
+    return this.http.get<ICase>(`${this.API_URL._SERVER}case/${caseId}`);
   }
 
 
@@ -107,8 +108,8 @@ export class CaseService {
         }
       ).subscribe((result: { message: string }) => {
         this.notificationService.smallSuccess(result.message);
-        this.getCases(10, 1)
+        this.getCases(10, 1);
       });
-  };
+  }
 
 }

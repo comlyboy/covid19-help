@@ -5,7 +5,7 @@
             <div class="px-xl-5 pt-xl-5 mb-5">
                 <div class="h3 mb-3 text-green">Hi</div>
                 <div class="h5 mb-2 text-muted">Welcome to the
-                    <span class="text-green">Unofficial</span> NCDC help page</div>
+                    <span class="text-green"><u>Unofficial</u></span> NCDC help page</div>
 
                 <p class="h6 text-muted mb-2">
                     Are you having coronavirus symptoms or knows suspect someone who’s infected with the virus/symptoms.
@@ -17,16 +17,6 @@
                     and attend to you for proper treatment or isolation. Together we can stop the virus!! Help stop the
                     spread of the virus.
                 </p>
-                <!-- <p class="text-muted mb-3">
-                    This is NCDC help page where you can fill up a form to inform the NCDC you’re having COVID-19
-                </p>
-                <p class="text-muted mb-3">
-                    Kindly tick out the form below and supply your accurate information if you
-                    are at risk of being infected with COVID-19 for the NCDC to quickly come and attend to you for
-                    proper treatment or isolation. Together we can stop the virus!! Help stop the spread of the virus.
-                    symptoms or suspect someone who's infected with the virus for proper treatment/isolation. Help stop
-                    the spread of the virus!!
-                </p> -->
 
             </div>
         </div>
@@ -100,7 +90,7 @@
                 </div>
 
 
-                <div *ngIf="alertt" class="card handy-card" style="width: 35rem;">
+                <div *ngIf="alertt" class="card handy-card animated bounceIn" style="width: 35rem;">
                     <div class="card-header bg-transparent">
                         <div class="h5 mb-0 text-green">Result</div>
                     </div>
@@ -120,7 +110,24 @@
                                 can
                                 revisit the form.</p>
 
-                            <button (click)="onClose()" class="btn btn-green mt-5 px-4" type="button">Ok</button>
+                            <div class="text-left mt-4">
+                                <div class="h6">Usefull links: </div>
+                                <li>
+                                    <a class=" text-green" href="https://covid19.ncdc.gov.ng/">NCDC situation reports</a>
+                                </li>
+                                <li>
+                                    <a class=" text-green" href="http://covid19.ncdc.gov.ng/faq.php">NCDC FAQ</a>
+                                </li>
+                                <li>
+                                    <a class=" text-green"
+                                        href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports">See
+                                        situation reports from WHO</a>
+                                </li>
+
+                            </div>
+
+
+                            <button (click)="onClose()" class="btn btn-green mt-4 px-4" type="button">Ok</button>
                         </div>
 
                         <!-- <ul class="list-group list-group-flush px-4">
