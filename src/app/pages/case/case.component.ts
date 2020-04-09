@@ -9,6 +9,7 @@ import { definedStatus } from '../../shared/helper/status';
 import { CaseService } from './case.service';
 import { ICase } from '../../interfaces/case';
 import { DialogService } from '../../shared/service/dialog.service';
+import { PrintService } from 'src/app/shared/service/print.service';
 
 @Component({
   selector: 'app-case',
@@ -31,6 +32,7 @@ export class CaseComponent implements OnInit {
   constructor(
     private caseService: CaseService,
     private dialogService: DialogService,
+    private printService: PrintService
   ) { }
 
   onDeleteDialog(caseId: string) {
@@ -57,6 +59,12 @@ export class CaseComponent implements OnInit {
   changeStatus(caseId: string, status: number) {
     this.caseService.changeCaseStatus(caseId, status);
   }
+
+
+  printt(classId: string) {
+    this.printService.printPagePDF(classId);
+  }
+
 
 
   onChangePage(pageData: PageEvent) {

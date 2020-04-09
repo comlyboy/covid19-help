@@ -7,6 +7,8 @@ import { AngularMaterialModule } from '../../shared/module/material.module';
 import { FormsModule } from '@angular/forms';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
+import { AvatarModule } from 'ngx-avatar';
+import { ExportAsModule } from 'ngx-export-as';
 
 @NgModule({
   declarations: [CaseComponent],
@@ -14,8 +16,10 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     CommonModule,
     FormsModule,
     CaseRoutingModule,
+    AvatarModule,
     AngularMaterialModule,
-    PipesModule
+    PipesModule,
+    ExportAsModule
   ]
 })
 export class CaseModule { }

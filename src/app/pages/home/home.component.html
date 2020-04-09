@@ -1,18 +1,33 @@
-<div class="container-fluid mt-5 py-4">
-
-
-
-
+<div class="container-fluid mt-xl-5 mt-lg-5 mt-4 py-4">
 
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div class="px-xl-5 mb-5">
+            <div class="px-xl-5 pt-xl-5 mb-5">
                 <div class="h3 mb-3 text-green">Hi</div>
-                <div class="h5 text-mute">Welcome to NCDC help page.</div>
-                <p class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique delectus quisquam eos
-                    tempore
-                    iste officiis pariatur alias, magni nihil ratione! Non quidem dolores iure porro hic. Sint impedit
-                    voluptatum id?</p>
+                <div class="h5 mb-2 text-muted">Welcome to the
+                    <span class="text-green">Unofficial</span> NCDC help page</div>
+
+                <p class="h6 text-muted mb-2">
+                    Are you having coronavirus symptoms or knows suspect someone who’s infected with the virus/symptoms.
+                    You’re just few steps away from notifying the NCDC.
+                </p>
+                <p class="h6 text-muted text-justify">
+                    Kindly tick out the form below and supply your
+                    accurate information if you are at risk of being infected with covid-19 for the NCDC to quickly come
+                    and attend to you for proper treatment or isolation. Together we can stop the virus!! Help stop the
+                    spread of the virus.
+                </p>
+                <!-- <p class="text-muted mb-3">
+                    This is NCDC help page where you can fill up a form to inform the NCDC you’re having COVID-19
+                </p>
+                <p class="text-muted mb-3">
+                    Kindly tick out the form below and supply your accurate information if you
+                    are at risk of being infected with COVID-19 for the NCDC to quickly come and attend to you for
+                    proper treatment or isolation. Together we can stop the virus!! Help stop the spread of the virus.
+                    symptoms or suspect someone who's infected with the virus for proper treatment/isolation. Help stop
+                    the spread of the virus!!
+                </p> -->
+
             </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -34,6 +49,13 @@
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" name="isTired" ngModel
+                                    id="tiredCtrl">
+                                <label class="custom-control-label" for="tiredCtrl">Are you experiencing
+                                    tiredness/weakness?</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
                                 <input type="checkbox" class="custom-control-input" name="isCough" ngModel
                                     id="coughCtrl">
                                 <label class="custom-control-label" for="coughCtrl">Do you have
@@ -45,13 +67,6 @@
                                     id="runnyCtrl">
                                 <label class="custom-control-label" for="runnyCtrl">Are you experiencing nose blockage
                                     or runny nose?</label>
-                            </div>
-
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" name="isTired" ngModel
-                                    id="tiredCtrl">
-                                <label class="custom-control-label" for="tiredCtrl">Are you experiencing
-                                    tiredness?</label>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">
@@ -84,48 +99,46 @@
                     </form>
                 </div>
 
+
                 <div *ngIf="alertt" class="card handy-card" style="width: 35rem;">
-                    <!-- <div class="card-header h5 text-green bg-transparent">Check your status</div> -->
+                    <div class="card-header bg-transparent">
+                        <div class="h5 mb-0 text-green">Result</div>
+                    </div>
                     <div class="card-body text-muted">
-                        <div class="h6 text-right pointer">
-                            <mat-icon matTooltip="Close?" matTooltipPosition="before" (click)="onClose()"
-                                class="text-danger">clear</mat-icon>
+
+
+                        <div class="text-center">
+                            <div class="h4 mb-4 text-green text-center">Goodnews!!!</div>
+
+                            <p class="mb-3">Your survey result came out <span
+                                    class="h6 mb-0 text-green">{{ resultPercent }}/100</span>,
+                                meaning that your chosen symptoms cannot yet be regarded as COVID-19 symptoms</p>
+
+                            <p class="mb-0">However, you are advised to keep the social distancing/stay@home directive
+                                given
+                                by the NCDC so as not to infect others, and if you notice if the symptoms persist, you
+                                can
+                                revisit the form.</p>
+
+                            <button (click)="onClose()" class="btn btn-green mt-5 px-4" type="button">Ok</button>
                         </div>
 
-                        <div class="h4 text-green">Goodnews!!!</div>
-                        <p>Your survey result came out <span class="h6 mb-0 text-green">{{ resultPercent }}/100</span>,
-                            meaning that
-                            your chosen symptoms
-                            cannot yet be regarded as COVID-19 symptoms</p>
-                        <p class="mb-0">However, you are advised to keep the social distancing/stay@home directive given
-                            by the NCDC
-                            so as not to infect others, and if you
-                            notice if the symptoms persist, you can revisit this form to.</p>
-
-                        <ul class="list-group list-group-flush px-4">
-                            <li class="">
-                                <i class="fa fa-square"></i>
-                                Lorem ipsum dolor sit amet consectetur adipisicing
-                                elit. Accusantium
-                                repudiandae fugiat cum. Culpa nesciunt quo placeat, totam tempora fuga nam
-                                voluptates incidunt laboriosam rerum eos et repudiandae. Tenetur, facere atque!
-                            </li>
+                        <!-- <ul class="list-group list-group-flush px-4">
                             <li class="">
                                 Lorem ipsum dolor sit amet consectetur adipisicing
                                 elit. Accusantium
                                 repudiandae fugiat cum. Culpa nesciunt quo placeat, totam tempora fuga nam
                                 voluptates incidunt laboriosam rerum eos et repudiandae. Tenetur, facere atque!
                             </li>
-                            <li class="">
-                                Lorem ipsum dolor sit amet consectetur adipisicing
-                                elit. Accusantium
-                                repudiandae fugiat cum. Culpa nesciunt quo placeat, totam tempora fuga nam
-                                voluptates incidunt laboriosam rerum eos et repudiandae. Tenetur, facere atque!
-                            </li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="container">
+
 </div>

@@ -13,7 +13,7 @@ import { NavigationService } from 'src/app/shared/service/navigation.service';
 })
 export class AuthService {
   API_URL = environment;
-  user: IUser
+  user: IUser;
   private token: string;
 
   private isAuthenticated = false;
@@ -47,16 +47,16 @@ export class AuthService {
   createUser(userName: string, state: string, password: string) {
     const signupData: ISignup = {
       _id: null,
-      userName: userName,
-      state: state,
-      password: password,
+      userName,
+      state,
+      password,
     };
 
     this.http.post(`${this.API_URL._SERVER}user/signup`, signupData)
       .subscribe(response => {
         this.notificationService.success('Registered successfully');
       }, error => {
-        console.log(error)
+        console.log(error);
       });
   }
 
@@ -64,8 +64,8 @@ export class AuthService {
   // logging in existing user
   loginUser(userName: string, password: string) {
     const loginData: ILogin = {
-      userName: userName,
-      password: password
+      userName,
+      password
     };
 
     this.http.post<{ token: string, user: IUser }>(`${this.API_URL._SERVER}user/login`, loginData)
@@ -88,7 +88,7 @@ export class AuthService {
         this.notificationService.success(`Welcome ${response.user.userName}`);
         this.navigationService.goToDashboard();
       }, error => {
-        console.log(error.message)
+        console.log(error.message);
         this.authenticationStatusListener.next(false);
       });
   }
@@ -110,7 +110,7 @@ export class AuthService {
 
   // this gets the user authentication data
   private getAuthenticationData() {
-    let authData = this.storageService.getAuthData()
+    const authData = this.storageService.getAuthData();
     const token = authData.token;
     return { token };
   }
@@ -118,7 +118,7 @@ export class AuthService {
   // persists user authentication automatically
   automaticAuthenticateUser() {
     const authenticationInformation = this.getAuthenticationData();
-    let token_ = authenticationInformation.token;
+    const token_ = authenticationInformation.token;
 
     if (!token_) {
       return;

@@ -23,10 +23,13 @@
     </form>
 </div> -->
 
-
+<div class="container">
+    <button class="btn btn-green" (click)="printt('tableP')">Print</button>
+</div>
 
 <div class="container-fluid my-2">
-    <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl m-0">
+    <table id="tableP"
+        class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl m-0">
         <thead class="bg-green text-light">
             <tr>
                 <th scope="col">ID</th>
@@ -168,6 +171,11 @@
             </div>
             <div *ngIf="case" class="modal-body">
                 <div class="text-center pt-2 pb-3">
+                    <div class="d-flex justify-content-center">
+                        <ngx-avatar size="50" name="{{ case?.firstname }}
+                        {{ case?.surname }}">
+                        </ngx-avatar>
+                    </div>
                     <div class="h5 text-green">{{ case?.firstname | titlecase }}
                         {{ case?.surname | titlecase }}
                     </div>
@@ -262,7 +270,7 @@
                 </dl>
             </div>
             <div class="modal-footer px-5">
-                <div class="h5 action-edit">
+                <div (click)="printt('caseDetailsModal')" class="h5 action-edit">
                     <i class="fa fa-print"></i>
                 </div>
 
