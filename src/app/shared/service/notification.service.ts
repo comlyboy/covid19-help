@@ -38,6 +38,21 @@ export class NotificationService {
     });
   }
 
+  exist() {
+    const toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 10000,
+      grow: 'column'
+    });
+
+    toast.fire({
+      icon: 'info',
+      title: 'phone number already registered'
+    });
+  }
+
   error(message: any) {
     Swal.fire({
       icon: 'error',
