@@ -61,8 +61,7 @@ export class CaseService {
 
 
   getInputCase(phoneNumber: string) {
-    console.log(typeof phoneNumber);
-    // return this.http.get<ICase>(`${this.API_URL._SERVER}casooe/${phoneNumber}`);
+    return this.http.get<ICase>(`${this.API_URL._SERVER}case/verify/${phoneNumber}`);
   }
 
   // ===========

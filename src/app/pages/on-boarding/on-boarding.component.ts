@@ -37,7 +37,10 @@ export class OnBoardingComponent implements OnInit {
       return;
     }
 
-    this.caseService.getInputCase(phoneNumber);
+    this.caseService.getInputCase(phoneNumber)
+      .subscribe(caseData => {
+        console.log(caseData);
+      });
   }
 
   onSelectState(value: string) {
@@ -53,8 +56,6 @@ export class OnBoardingComponent implements OnInit {
 
 
   onSubmitCase(form: NgForm) {
-    const pre = '+234';
-    console.log(form.value.inputPhoneNumber);
     if (form.invalid) {
       return;
     }
@@ -63,7 +64,7 @@ export class OnBoardingComponent implements OnInit {
       (
         form.value.inputFirstname,
         form.value.inputSurname,
-        pre + form.value.inputPhoneNumber,
+        form.value.inputPhoneNumber,
         form.value.inputStateName,
         form.value.inputLGA,
         form.value.inputDOB,
