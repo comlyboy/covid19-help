@@ -46,7 +46,9 @@ private notificationService: NotificationService,
 if (caseData) {
       this.itExists =true;
 this.notificationService.exist();
-    };
+    } else {
+this.itExists =false;
+};
       });
   }
 
