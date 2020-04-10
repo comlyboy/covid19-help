@@ -120,7 +120,7 @@
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <select (change)="onSelectState($event.target.value)" class="form-control form-control-lg"
+                            <select [disabled]="itExists" (change)="onSelectState($event.target.value)" class="form-control form-control-lg"
                                 name="inputStateName" ngModel required #stateName="ngModel">
                                 <option selected value="">Select state...</option>
                                 <option *ngFor="let state of states" [value]="state.alias">
@@ -219,7 +219,7 @@
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <textarea class="form-control" rows="3" name="inputAddress" ngModel minlength="15"
+                            <textarea  [disabled]="itExists" class="form-control" rows="3" name="inputAddress" ngModel minlength="15"
                                 autocomplete="off" placeholder="Address..." #address="ngModel" required></textarea>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
@@ -245,7 +245,7 @@
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <textarea class="form-control" rows="3" name="inputSymptoms" ngModel minlength="15"
+                            <textarea  [disabled]="itExists" class="form-control" rows="3" name="inputSymptoms" ngModel minlength="15"
                                 autocomplete="off" placeholder="Describe symptoms..." #symptoms="ngModel"
                                 required></textarea>
                         </div>
