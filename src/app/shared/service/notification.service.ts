@@ -48,7 +48,7 @@ export class NotificationService {
     });
 
     toast.fire({
-      icon: 'info',
+      icon: 'error',
       title: 'phone number already registered'
     });
   }
