@@ -120,8 +120,9 @@
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <select [disabled]="itExists" (change)="onSelectState($event.target.value)" class="form-control form-control-lg"
-                                name="inputStateName" ngModel required #stateName="ngModel">
+                            <select [disabled]="itExists" (change)="onSelectState($event.target.value)"
+                                class="form-control form-control-lg" name="inputStateName" ngModel required
+                                #stateName="ngModel">
                                 <option selected value="">Select state...</option>
                                 <option *ngFor="let state of states" [value]="state.alias">
                                     {{  state.state | titlecase }}
@@ -219,8 +220,9 @@
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <textarea  [disabled]="itExists" class="form-control" rows="3" name="inputAddress" ngModel minlength="15"
-                                autocomplete="off" placeholder="Address..." #address="ngModel" required></textarea>
+                            <textarea [disabled]="itExists" class="form-control" rows="3" name="inputAddress" ngModel
+                                minlength="15" autocomplete="off" placeholder="Address..." #address="ngModel"
+                                required></textarea>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
                             <div *ngIf="address.errors.required">
@@ -245,8 +247,8 @@
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <textarea  [disabled]="itExists" class="form-control" rows="3" name="inputSymptoms" ngModel minlength="15"
-                                autocomplete="off" placeholder="Describe symptoms..." #symptoms="ngModel"
+                            <textarea [disabled]="itExists" class="form-control" rows="3" name="inputSymptoms" ngModel
+                                minlength="15" autocomplete="off" placeholder="Describe symptoms..." #symptoms="ngModel"
                                 required></textarea>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="symptoms.touched && !symptoms.valid">

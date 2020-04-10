@@ -17,7 +17,7 @@ import _ from 'underscore';
 export class OnBoardingComponent implements OnInit {
   startDate = new Date(1980, 0, 1);
   alertt = true;
-itExists= false;
+  itExists = false;
 
   states: IState[] = [];
   stateSub: Subscription;
@@ -28,7 +28,7 @@ itExists= false;
     public authService: AuthService,
     private stateService: StateService,
     private navigationService: NavigationService,
-private notificationService: NotificationService,
+    private notificationService: NotificationService,
     private caseService: CaseService
   ) { }
 
@@ -43,12 +43,12 @@ private notificationService: NotificationService,
     this.caseService.getInputCase(phoneNumber)
       .subscribe(caseData => {
         console.log(caseData);
-if (caseData) {
-      this.itExists =true;
-this.notificationService.exist();
-    } else {
-this.itExists =false;
-};
+        if (caseData) {
+          this.itExists = true;
+          this.notificationService.exist();
+        } else {
+          this.itExists = false;
+        }
       });
   }
 
@@ -81,14 +81,14 @@ this.itExists =false;
         form.value.inputSymptoms
       );
 
-form.resetForm();
+    form.resetForm();
   }
 
   initContents() {
-    this.isAuthenticated = this.authService.getIsAuthenticated()
+    this.isAuthenticated = this.authService.getIsAuthenticated();
     if (this.isAuthenticated) {
       this.navigationService.goToDashboard();
-    };
+    }
 
 
     this.stateService.getStates()
@@ -96,7 +96,7 @@ form.resetForm();
         const sorted = _.sortBy(stateData, 'state');
         this.states = sorted;
       });
-  };
+  }
 
   ngOnInit() {
     this.initContents();
