@@ -29,10 +29,21 @@ export class OnBoardingComponent implements OnInit {
     private caseService: CaseService
   ) { }
 
+
+  onInputPhoneNumber(phoneNumber: any) {
+    const length = phoneNumber.length;
+
+    if (!phoneNumber || length < 11 || isNaN(phoneNumber)) {
+      return;
+    }
+
+    this.caseService.getInputCase(phoneNumber);
+  }
+
   onSelectState(value: string) {
     if (!value) {
       return;
-    };
+    }
 
     this.stateService.getStateLGA(value)
       .subscribe(lgas => {
@@ -42,22 +53,23 @@ export class OnBoardingComponent implements OnInit {
 
 
   onSubmitCase(form: NgForm) {
-    const pre = "+234"
+    const pre = '+234';
+    console.log(form.value.inputPhoneNumber);
     if (form.invalid) {
       return;
     }
 
-    this.caseService.addCase
-      (
-        form.value.inputFirstname,
-        form.value.inputSurname,
-        pre + form.value.inputPhoneNumber,
-        form.value.inputStateName,
-        form.value.inputLGA,
-        form.value.inputDOB,
-        form.value.inputAddress,
-        form.value.inputSymptoms
-      );
+    // this.caseService.addCase
+    //   (
+    //     form.value.inputFirstname,
+    //     form.value.inputSurname,
+    //     pre + form.value.inputPhoneNumber,
+    //     form.value.inputStateName,
+    //     form.value.inputLGA,
+    //     form.value.inputDOB,
+    //     form.value.inputAddress,
+    //     form.value.inputSymptoms
+    //   );
 
   }
 
@@ -70,7 +82,7 @@ export class OnBoardingComponent implements OnInit {
 
     this.stateService.getStates()
       .subscribe(stateData => {
-        let sorted = _.sortBy(stateData, 'state');
+        const sorted = _.sortBy(stateData, 'state');
         this.states = sorted;
       });
   };

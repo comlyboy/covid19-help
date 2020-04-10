@@ -1,9 +1,10 @@
 <div class="container py-5 px-3">
 
-    <div *ngIf="alertt" class="alert alert-green animated lightSpeedIn handy-card alert-dismissible fade show" role="alert">
+    <div *ngIf="alertt" class="alert alert-green animated lightSpeedIn handy-card alert-dismissible fade show"
+        role="alert">
         <strong>Hi! </strong>Kindly
-            fill the below forms
-            to register your case, for a better chance of been tested by NCDC.
+        fill the below forms
+        to register your case, for a better chance of been tested by NCDC.
         <button type="button" class="close text-light pl-0" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -74,28 +75,38 @@
                     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
                         <div class="h6 text-left mt-4 mb-1">Phone number</div>
                         <div class="input-group mt-2">
-                            <div class="input-group-prepend bg-light" *ngIf="phonenumber.touched && phonenumber.valid">
+                            <div *ngIf="phonenumber.touched && phonenumber.valid" class="input-group-prepend bg-light">
                                 <span class="input-group-text bg-white">
-                                    <!-- <mat-icon class="text-green">done_all</mat-icon> -->
-                                    <div class="h5 mb-0 text-green">+234</div>
+                                    <mat-icon class="text-green">done_all</mat-icon>
                                 </span>
                             </div>
-                            <div class="input-group-prepend bg-light"
-                                *ngIf="phonenumber.touched && phonenumber.invalid">
+                            <div class="input-group-prepend bg-light" *ngIf="phonenumber.touched && phonenumber.invalid">
                                 <span class="input-group-text bg-white">
                                     <mat-icon class="text-danger">clear</mat-icon>
                                 </span>
                             </div>
-                            <input type="number" class="form-control form-control-lg" name="inputPhoneNumber" ngModel
-                                required minlength="7" autocomplete="off" placeholder="Phone Number..."
-                                #phonenumber="ngModel">
+                            <input (change)="onInputPhoneNumber($event.target.value)" type="text" pattern="^[0-9]*$"
+                                class="form-control form-control-lg" name="inputPhoneNumber" ngModel minlength="11"
+                                maxlength="11" autocomplete="off" placeholder="Phone Number..." #phonenumber="ngModel"
+                                required>
+                            <div class="input-group-append bg-light" *ngIf="phonenumber.touched && phonenumber.valid">
+                                <span class="input-group-text bg-white">
+                                    <mat-icon class="text-green">done_all</mat-icon>
+                                </span>
+                            </div>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="phonenumber.touched && !phonenumber.valid">
                             <div *ngIf="phonenumber.errors.required">
                                 This field is required.
                             </div>
                             <div *ngIf="phonenumber.errors.minlength">
-                                Minimum 7 numbers needed.
+                                Minimum 11 numbers needed.
+                            </div>
+                            <div *ngIf="phonenumber.errors.maxlength">
+                                Exceeded maximum 11 numbers.
+                            </div>
+                            <div *ngIf="phonenumber.errors.pattern">
+                                Phone number format only.
                             </div>
                         </div>
                     </div>
@@ -190,7 +201,7 @@
                                 </span>
                             </div>
                             <textarea class="form-control" rows="3" name="inputAddress" ngModel required
-                                autocomplete="off" placeholder="address..." #address="ngModel" required></textarea>
+                                autocomplete="off" placeholder="Address..." #address="ngModel" required></textarea>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="address.touched && !address.valid">
                             <div *ngIf="address.errors.required">
@@ -200,7 +211,7 @@
                     </div>
 
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                        <div class="h6 text-left mt-4 mb-1">Symptoms</div>
+                        <div class="h6 text-left mt-4 mb-1">Symptoms (seperate by commas)</div>
                         <div class="input-group">
                             <div class="input-group-prepend bg-light" *ngIf="symptoms.touched && symptoms.valid">
                                 <span class="input-group-text bg-white">
@@ -208,8 +219,8 @@
                                 </span>
                             </div>
                             <textarea class="form-control" rows="3" name="inputSymptoms" ngModel required
-                                autocomplete="off" placeholder="Describe every symptoms you are having..."
-                                #symptoms="ngModel" required></textarea>
+                                autocomplete="off" placeholder="Describe symptoms..." #symptoms="ngModel"
+                                required></textarea>
                         </div>
                         <div class="alert alert-danger p-1 m-0" *ngIf="symptoms.touched && !symptoms.valid">
                             <div *ngIf="symptoms.errors.required">
@@ -226,7 +237,7 @@
                                 Okeke</a>
                         </div>
                     </div>
-                    <button [disabled]="!caseForm.valid" matRipple type="submit"
+                    <button [disabled]="caseForm.valid" matRipple type="submit"
                         class="btn btn-lg btn-green mt-5 py-1">Submit</button>
                 </div>
 

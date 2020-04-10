@@ -8,17 +8,17 @@ export class StatePipe implements PipeTransform {
   transform(value: string, ...args: unknown[]): unknown {
     if (!value) {
       return;
-    };
+    }
 
     switch (value) {
       case 'akwa_ibom':
-        return "Akwa Ibom State";
+        return 'Akwa Ibom State';
 
       case 'abuja':
-        return "Federal Capital Territory";
+        return 'FCT';
 
       case 'cross_river':
-        return "Cross River State";
+        return 'Cross River State';
 
       default:
         return value
