@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { StateService } from '../state/state.service';
 import { NavigationService } from 'src/app/shared/service/navigation.service';
+import { NotificationService } from 'src/app/shared/service/notification.service';
 import { CaseService } from '../case/case.service';
 import { NgForm } from '@angular/forms';
 import _ from 'underscore';
@@ -16,6 +17,7 @@ import _ from 'underscore';
 export class OnBoardingComponent implements OnInit {
   startDate = new Date(1980, 0, 1);
   alertt = true;
+itExists= false;
 
   states: IState[] = [];
   stateSub: Subscription;
@@ -26,6 +28,7 @@ export class OnBoardingComponent implements OnInit {
     public authService: AuthService,
     private stateService: StateService,
     private navigationService: NavigationService,
+private notificationService: NotificationService,
     private caseService: CaseService
   ) { }
 
@@ -40,6 +43,10 @@ export class OnBoardingComponent implements OnInit {
     this.caseService.getInputCase(phoneNumber)
       .subscribe(caseData => {
         console.log(caseData);
+if (caseData) {
+      this.itExists =true;
+this.notificationService.exist();
+    };
       });
   }
 
@@ -72,6 +79,7 @@ export class OnBoardingComponent implements OnInit {
         form.value.inputSymptoms
       );
 
+form.resetForm();
   }
 
   initContents() {
