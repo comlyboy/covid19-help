@@ -4,7 +4,7 @@
     <ng-sidebar class="sidebar" allowSidebarBackdropControl="false" autoCollapseWidth="767" mode="push"
         [opened]="_opened">
         <div *ngIf="userIsAuthenticated" class="sidebar-content align-items-start bd-highlight">
-            
+
             <ul class="py-5 mt-2 pl-0 mb-5 bd-highlight">
                 <hr class="m-0">
                 <div class="text-center my-4">
@@ -46,6 +46,9 @@
         <nav *ngIf="!userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
             <div class="h5 mb-0">{{ title }}</div>
             <a routerLink="/auth" class="h5 mb-0 ml-auto mr-3 pointer text-green">Login</a>
+            <button class="btn btn-green float bg-green">
+                <a class="text-white" href="https://covid19-global-data.netlify.com/" target="_blank" rel="noopener noreferrer"><i class="fa fa-chart-bar"></i></a></button>
+
         </nav>
         <nav *ngIf="userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
             <div class="d-flex">
