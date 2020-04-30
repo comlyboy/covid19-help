@@ -1,64 +1,83 @@
-<!-- Container for sidebar(s) + page content -->
+<button class="btn btn-green float bg-green">
+    <a class="text-white" href="https://covid19-global-data.netlify.com/" target="_blank" rel="noopener noreferrer"><i
+            class="fa fa-chart-bar"></i></a>
+</button>
 
-<ng-sidebar-container>
-    <ng-sidebar class="sidebar" allowSidebarBackdropControl="false" autoCollapseWidth="767" mode="push"
-        [opened]="_opened">
-        <div *ngIf="userIsAuthenticated" class="sidebar-content align-items-start bd-highlight">
 
-            <ul class="py-5 mt-2 pl-0 mb-5 bd-highlight">
-                <hr class="m-0">
-                <div class="text-center my-4">
-                    <img src="../assets/svg/user.svg" alt="" sizes="20" srcset="">
+<nav class="d-none d-md-none d-lg-block d-xl-block navbar navbar-expand-lg toolbar bg-white">
+    <div class="navbar-collapse d-flex justify-content-between bg-white" id="navbarText">
+
+        <div class="navbar-brand text-green d-flex pb-0">
+            <div class="h5 ml-2">NCDC-help</div>
+        </div>
+
+        <ul *ngIf="userIsAuthenticated" class="navbar-nav ml-auto">
+
+            <li class="px-2">
+                <a class="h6 navi-link  mb-0" routerLink="/dashboard" routerLinkActive="current">
+                    <i class="fa fa-tachometer-alt mr-2"></i>Dashboard
+                </a>
+            </li>
+
+            <li class="px-2">
+                <a class="h6 navi-link  mb-0" routerLink="/cases" routerLinkActive="current">
+                    <i class="fas fa-head-side-cough mr-2"></i>Cases
+                </a>
+            </li>
+
+            <li class="px-2">
+                <a class="h6 navi-link  mb-0" routerLink="/states" routerLinkActive="current">
+                    <i class="fas fa-flag mr-2"></i>States
+                </a>
+            </li>
+
+        </ul>
+
+
+
+        <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h4 text-green mb-0 ml-auto mr-3">
+            <i class="fa fa-user-circle"></i>
+        </div>
+        <mat-menu #menu="matMenu" xPosition="before">
+            <ng-template matMenuContent>
+                <div class="card-body text-center text-mute p-0">
+                    <ul class="list-group list-group-flush">
+                        <li matRipple (click)="onLogout()"
+                            class="list-group-item list-group-item-action pointer h6 px-5 py-3">
+                            Logout</li>
+                        <li matRipple class="list-group-item list-group-item-action pointer h6 px-5 py-3">
+                            About</li>
+                    </ul>
                 </div>
-                <hr class="m-0">
-                <li matRipple>
-                    <a class="h6 mb-0 text-center" routerLink="/dashboard" routerLinkActive="current">
-                        <div class="h6">
-                            <i class="fa fa-tachometer-alt"></i>
-                        </div>
-                        <div class="h6 mb-0">Dashboard</div>
-                    </a>
-                </li>
+            </ng-template>
+        </mat-menu>
 
-                <li matRipple>
-                    <a class="h6 mb-0 text-center" routerLink="/cases" routerLinkActive="current">
-                        <div class="h6">
-                            <i class="fas fa-head-side-cough"></i>
-                        </div>
-                        <div class="h6 mb-0">Cases</div>
-                    </a>
-                </li>
+    </div>
+</nav>
 
-                <li matRipple>
-                    <a class="h6 mb-0 text-center" routerLink="/states" routerLinkActive="current">
-                        <div class="h6">
-                            <i class="fas fa-flag"></i>
-                        </div>
-                        <div class="h6 mb-0">States</div>
-                    </a>
-                </li>
-            </ul>
+
+<nav class="d-sm-block d-lg-none d-xl-none toolbar bg-white">
+
+    <div class="d-flex justify-content-between">
+        <div class="navbar-brand text-handy d-flex pb-0 mr-0">
+            <div class="h5 text-green">NCDC-help</div>
+        </div>
+
+        <div *ngIf="userIsAuthenticated" class="d-flex justify-content-between">
+            <a class="h6 navi-link mb-0 p-2" routerLink="/dashboard" routerLinkActive="current">
+                <i class="fa fa-tachometer-alt"></i>
+            </a>
+            <a class="h6 navi-link mb-0 p-2" routerLink="/cases" routerLinkActive="current">
+                <i class="fas fa-head-side-cough"></i>
+            </a>
+            <a class="h6 navi-link mb-0 p-2" routerLink="/states" routerLinkActive="current">
+                <i class="fas fa-flag"></i>
+            </a>
 
         </div>
-    </ng-sidebar>
 
-    <div ng-sidebar-content>
-        <nav *ngIf="!userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
-            <div class="h5 mb-0">{{ title }}</div>
-            <!-- <a routerLink="/auth" class="h5 mb-0 ml-auto mr-3 pointer text-green">Login</a> -->
-            <button class="btn btn-green float bg-green">
-                <a class="text-white" href="https://covid19-global-data.netlify.com/" target="_blank" rel="noopener noreferrer"><i class="fa fa-chart-bar"></i></a></button>
-
-        </nav>
-        <nav *ngIf="userIsAuthenticated" class="navbar navbar-expand-lg text-green bg-white py-3">
-            <div class="d-flex">
-                <div (click)="_toggleSidebar()" class="h5 mr-5 mb-0 pointer">
-                    <i class="fa fa-align-justify"></i>
-                </div>
-                <div class="h5 mb-0">NCDC-help</div>
-            </div>
-
-            <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h5 mb-0 ml-auto mr-4">
+        <div *ngIf="userIsAuthenticated" class="d-flex">
+            <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h4 text-green mb-0 ml-auto mt-1">
                 <i class="fa fa-user-circle"></i>
             </div>
             <mat-menu #menu="matMenu" xPosition="before">
@@ -74,8 +93,12 @@
                     </div>
                 </ng-template>
             </mat-menu>
-        </nav>
-        <router-outlet></router-outlet>
+
+        </div>
+
     </div>
 
-</ng-sidebar-container>
+</nav>
+
+
+<router-outlet></router-outlet>

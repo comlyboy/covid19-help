@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IState } from '../../interfaces/state';
 
 import { StateService } from './state.service';
-import _ from "underscore";
+import _ from 'underscore';
 
 @Component({
   selector: 'app-state',
@@ -12,7 +12,7 @@ import _ from "underscore";
 })
 export class StateComponent implements OnInit {
   states: IState[] = [];
-  totalStates: number = 0;
+  totalStates = 0;
 
   constructor(
     private stateService: StateService
@@ -20,12 +20,8 @@ export class StateComponent implements OnInit {
 
 
   initContents() {
-    this.stateService.getStates()
-      .subscribe(stateData => {
-        let sorted = _.sortBy(stateData, 'state');
-        this.states = sorted;
-        this.totalStates = this.states.length;
-      });
+    this.states = this.stateService.getStates();
+    this.totalStates = this.states.length;
   };
 
 

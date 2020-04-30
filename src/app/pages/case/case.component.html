@@ -65,7 +65,7 @@
                 <td>
                     <a class="text-green" [routerLink]="['/states', case.state]">{{ case.state | stateFormat }}</a>
                 </td>
-                <td>{{ case.lga | titlecase }}</td>
+                <td>{{ case.lga | titlecase }} LGA</td>
                 <td>{{ case.dateOfBirth | ageCalculate }} year(s) old</td>
 
                 <td class="py-0">
@@ -269,8 +269,17 @@
                     </dd>
                 </dl>
             </div>
+            <hr class="m-0">
             <div class="modal-footer px-5">
-                <div (click)="printt('modalP')" class="h5 action-edit">
+                <div *ngIf="printMode" class="d-flex p-0 m-0">
+                    <div (click)="onPrintIMG('modalP')" class="h6 mb-0 px-3 text-green pointer">As Image</div>
+                    <div (click)="onPrintPDF('modalP')" class="h6 mb-0 px-3 text-green">As PDF</div>
+                    <div (click)="onPrintMode()" class="h6 mb-0">
+                        <i class="fa fa-times ml-5 text-danger pointer"></i>
+                    </div>
+
+                </div>
+                <div *ngIf="!printMode" (click)="onPrintMode()" class="h6 mb-0 action-edit">
                     <i class="fa fa-print"></i>
                 </div>
 

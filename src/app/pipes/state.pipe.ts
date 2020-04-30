@@ -15,7 +15,7 @@ export class StatePipe implements PipeTransform {
         return 'Akwa Ibom State';
 
       case 'abuja':
-        return 'FCT';
+        return 'Federal Capital Territory';
 
       case 'cross_river':
         return 'Cross River State';

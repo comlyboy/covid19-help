@@ -17,6 +17,7 @@ import { PrintService } from 'src/app/shared/service/print.service';
   styleUrls: ['./case.component.scss']
 })
 export class CaseComponent implements OnInit {
+  printMode = false;
   statusData = definedStatus;
 
   totalCases = 0;
@@ -34,6 +35,11 @@ export class CaseComponent implements OnInit {
     private dialogService: DialogService,
     private printService: PrintService
   ) { }
+
+
+  onPrintMode() {
+    this.printMode = !this.printMode;
+  }
 
   onDeleteDialog(caseId: string) {
     this.dialogService.caseDeleteDialog(caseId);
@@ -61,7 +67,11 @@ export class CaseComponent implements OnInit {
   }
 
 
-  printt(classId: string) {
+  onPrintIMG(classId: string) {
+    this.printService.printPageImage(classId);
+  }
+
+  onPrintPDF(classId: string) {
     this.printService.printPagePDF(classId);
   }
 
@@ -85,6 +95,7 @@ export class CaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.initContent();
+
   }
 
 

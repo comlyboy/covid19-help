@@ -4,10 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
+
 import { IState } from '../../interfaces/state';
 import { ICase } from 'src/app/interfaces/case';
 import { IStateMetrics } from 'src/app/interfaces/metric';
 import { NotificationService } from 'src/app/shared/service/notification.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
+import _ from 'underscore';
 
 @Injectable({
   providedIn: 'root'
@@ -20,36 +23,38 @@ export class StateService {
 
   constructor(
     private http: HttpClient,
-    public notificationService: NotificationService
+    public notificationService: NotificationService,
+    private storageService: StorageService
   ) { }
 
 
-  getState() {
-    this.http
-      .get<IState[]>(`${this.API_URL._STATE_2}states`)
-      .subscribe(stateData => {
-        console.log(stateData);
+  // getState() {
+  //   this.http
+  //     .get<IState[]>(`${this.API_URL._STATE_2}states`)
+  //     .subscribe(stateData => {
+  //       console.log(stateData);
 
-      });
+  //     });
 
-  }
+  // }
 
 
   getStates() {
-    // this.getState();
-    return this.http
-      .get<IState[]>(`${this.API_URL._STATE}lgas`);
-  };
+    const data = this.storageService.getStateLGA();
+    return _.sortBy(data, 'state');
+  }
 
   getStateLGA(stateId: string) {
-    return this.http
-      .get<IState["lgas"][]>(`${this.API_URL._STATE}states/${stateId}/lgas`);
+    const data = this.storageService.getStateLGA();
+    return _.sortBy(data, 'state');
+
   };
 
 
   getStateDetails(stateId: string) {
-    return this.http
-      .get<IState>(`${this.API_URL._STATE}states/${stateId}/details`);
+  return this.storageService.getStateLGA();
+
+  
   };
 
 

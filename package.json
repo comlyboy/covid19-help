@@ -23,8 +23,6 @@
     "@angular/router": "~9.1.1",
     "@angular/service-worker": "~9.1.1",
     "bootstrap": "^4.4.1",
-    "ng-sidebar": "^9.2.0",
-    "ngx-avatar": "^3.7.0",
     "ngx-export-as": "^1.4.0",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.10.6",

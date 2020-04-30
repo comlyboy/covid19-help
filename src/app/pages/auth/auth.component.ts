@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
 import { NavigationService } from 'src/app/shared/service/navigation.service';
 import { StateService } from '../state/state.service';
 import { IState } from 'src/app/interfaces/state';
-import _ from "underscore";
+import _ from 'underscore';
 
 
 @Component({
@@ -51,16 +51,11 @@ export class AuthComponent implements OnInit {
       form.value.inputState,
       form.value.inputPassword,
     );
-    this.viewMode = "login"
-  };
+    this.viewMode = 'login';
+  }
 
   onNaviToSignup() {
-
-    this.stateService.getStates()
-      .subscribe(stateData => {
-        let sorted = _.sortBy(stateData, 'state');
-        this.states = sorted;
-      });
+    this.states = this.stateService.getStates();
     this.viewMode = 'register';
   };
 
@@ -69,10 +64,8 @@ export class AuthComponent implements OnInit {
     this.isAuthenticated = this.authService.getIsAuthenticated()
     if (this.isAuthenticated) {
       this.navigationService.goToDashboard();
-    };
-
-
-  };
+    }
+  }
 
 
   ngOnInit() {

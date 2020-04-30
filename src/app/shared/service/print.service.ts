@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
-
+import { generateDate } from 'src/app/util/dateGenerator';
+generateDate
 @Injectable({
   providedIn: 'root'
 })
 export class PrintService {
 
-  printDate = (new Date()).toString().split(' ').splice(1, 3).join('_');
-  printTime = new Date().getTime();
 
   constructor(
     private exportAsService: ExportAsService
@@ -22,7 +21,7 @@ export class PrintService {
     };
 
     // download the file using old school javascript method
-    this.exportAsService.save(exportAsConfig, `case_export_${this.printDate}`)
+    this.exportAsService.save(exportAsConfig, `case_export_${generateDate()}`)
       .subscribe(() => {
       });
   }
@@ -35,7 +34,7 @@ export class PrintService {
     };
 
     // download the file using old school javascript method
-    this.exportAsService.save(exportAsConfig, `case_export_${this.printDate}`)
+    this.exportAsService.save(exportAsConfig, `case_export_${generateDate()}`)
       .subscribe(() => {
       });
 

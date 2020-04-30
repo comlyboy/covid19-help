@@ -2,42 +2,31 @@
     box-shadow: 0 0.5rem 1rem 0 rgba(99, 126, 117, 0.1);
 }
 
-.sidebar-content img {
-    max-width: 80px;
-    max-height: auto;
+.toolbar {
+    padding: 10px 25px;
+    box-shadow: 0 5px 15px 0 rgba(37, 44, 97, .15), 0 2px 4px 0 rgba(93, 100, 148, .2);
+    // box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
 }
 
-.sidebar-content {
-    position: relative;
-    overflow: auto;
-    height: 100% !important;
-    width: 150px !important;
-    background-color: #ffffff !important;
-}
 
-.sidebar a {
-
+.toolbar a {
     display: block;
-    padding: 10px 15px;
-    border-bottom: 1px solid rgb(231, 233, 238);
+    padding: 10px 20px;
+    // border-bottom: 1px solid rgb(231, 233, 238);
     text-decoration: none;
     color: #6c757d;
-    border-right: #12b88600 solid 3px;
+    text-decoration: none;
 }
 
-.current {
-    background-color: #f7fdfa !important;
-    color: #12b886 !important;
-    border-right: #12b886 solid 3px !important;
-}
-
-.sidebar a:hover {
+.toolbar a:hover {
     color: #12b886;
     text-decoration: none;
 }
 
-.sidebar li:last-child a {
-    border-bottom: none;
+.current {
+    background-color: #edfaf0 !important;
+    color: #12b886 !important;
+    border-radius: 30px;
 }
 
 .extra:hover {

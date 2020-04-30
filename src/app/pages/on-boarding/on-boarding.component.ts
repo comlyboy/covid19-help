@@ -52,15 +52,15 @@ export class OnBoardingComponent implements OnInit {
       });
   }
 
-  onSelectState(value: string) {
-    if (!value) {
+  onSelectState(stateId: string) {
+    if (!stateId) {
       return;
     }
-
-    this.stateService.getStateLGA(value)
-      .subscribe(lgas => {
-        this.LGAs = lgas;
-      });
+    const states: IState[] = this.stateService.getStateLGA(stateId);
+    const state = states.find((item) => {
+      return item.alias === stateId;
+    })
+    this.LGAs = state.lgas;
   }
 
 
@@ -90,12 +90,7 @@ export class OnBoardingComponent implements OnInit {
       this.navigationService.goToDashboard();
     }
 
-
-    this.stateService.getStates()
-      .subscribe(stateData => {
-        const sorted = _.sortBy(stateData, 'state');
-        this.states = sorted;
-      });
+    this.states = this.stateService.getStates();
   }
 
   ngOnInit() {
