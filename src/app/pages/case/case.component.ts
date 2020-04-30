@@ -18,6 +18,8 @@ import { PrintService } from 'src/app/shared/service/print.service';
 })
 export class CaseComponent implements OnInit {
   printMode = false;
+  printDateTime: string | number = null;
+
   statusData = definedStatus;
 
   totalCases = 0;
@@ -37,9 +39,10 @@ export class CaseComponent implements OnInit {
   ) { }
 
 
-  onPrintMode() {
+  onFooterMode() {
     this.printMode = !this.printMode;
   }
+
 
   onDeleteDialog(caseId: string) {
     this.dialogService.caseDeleteDialog(caseId);
@@ -68,11 +71,25 @@ export class CaseComponent implements OnInit {
 
 
   onPrintIMG(classId: string) {
-    this.printService.printPageImage(classId);
+    this.printDateTime = Date.now();
+    setTimeout(() => {
+      this.printService.printPageImage(classId);
+    }, 500);
+    setTimeout(() => {
+      this.printMode = false;
+      this.printDateTime = null;
+    }, 5000);
   }
 
   onPrintPDF(classId: string) {
-    this.printService.printPagePDF(classId);
+    this.printDateTime = Date.now();
+    setTimeout(() => {
+      this.printService.printPagePDF(classId);
+    }, 500);
+    setTimeout(() => {
+      this.printMode = false;
+      this.printDateTime = null;
+    }, 5000);
   }
 
 

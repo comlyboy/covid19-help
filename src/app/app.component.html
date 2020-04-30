@@ -1,4 +1,4 @@
-<button class="btn btn-green float bg-green">
+<button *ngIf="!userIsAuthenticated" class="btn btn-green float bg-green">
     <a class="text-white" href="https://covid19-global-data.netlify.com/" target="_blank" rel="noopener noreferrer"><i
             class="fa fa-chart-bar"></i></a>
 </button>
@@ -64,13 +64,13 @@
         </div>
 
         <div *ngIf="userIsAuthenticated" class="d-flex justify-content-between">
-            <a class="h6 navi-link mb-0 p-2" routerLink="/dashboard" routerLinkActive="current">
+            <a class="h6 navi-link mb-0 p-2 mx-2" routerLink="/dashboard" routerLinkActive="current">
                 <i class="fa fa-tachometer-alt"></i>
             </a>
-            <a class="h6 navi-link mb-0 p-2" routerLink="/cases" routerLinkActive="current">
+            <a class="h6 navi-link mb-0 p-2 mx-2" routerLink="/cases" routerLinkActive="current">
                 <i class="fas fa-head-side-cough"></i>
             </a>
-            <a class="h6 navi-link mb-0 p-2" routerLink="/states" routerLinkActive="current">
+            <a class="h6 navi-link mb-0 p-2 mx-2" routerLink="/states" routerLinkActive="current">
                 <i class="fas fa-flag"></i>
             </a>
 
