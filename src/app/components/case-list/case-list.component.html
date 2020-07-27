@@ -110,10 +110,10 @@
                 <div class="card-body py-2">
 
                     <div class="d-flex justify-content-between text-muted">
-                        <div (click)="onCaseDetails(case._id)" class="h5 mb-1 text-dark pointer">
+                        <div (click)="onCaseDetails(case._id)" class="h5 mb-1 text-green pointer">
                             {{ case.firstname | titlecase }}
-                            {{ case.surname | titlecase }} <span>
-                                <i class="fa fa-launch"></i> </span>
+                            {{ case.surname | titlecase }} <span class="h6 ml-2">
+                                <i class="fa fa-paper-plane"></i></span>
                         </div>
                         <div class="ml-auto pointer" mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Actions"
                             matTooltipPosition="left">
@@ -126,9 +126,6 @@
                                     mat-menu-item>
                                     <mat-icon>edit</mat-icon>Change status
                                 </div>
-                                <!-- <div class="list-group-item" [routerLink]="['/customer/edit', case._id]" mat-menu-item>
-                                    <mat-icon>edit</mat-icon>Edit
-                                </div> -->
                                 <button (click)="onDeleteDialog(case._id)" class="list-group-item my-ppointer"
                                     mat-menu-item>
                                     <mat-icon>delete</mat-icon>Delete
