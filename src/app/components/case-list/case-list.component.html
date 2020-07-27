@@ -1,0 +1,206 @@
+<ng-template [ngIf]="isDesktopView">
+
+    <table id="tableP"
+        class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl m-0">
+        <thead class="bg-green text-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">State</th>
+                <th scope="col">LGA</th>
+                <th scope="col">Age</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white handy-table-body text-muted" *ngIf="cases.length > 0">
+            <tr *ngFor="let case of cases">
+                <td>{{ case.caseId }}</td>
+                <td>{{ case?.registeredAt | date:'mediumDate' }}, {{ case?.registeredAt | date:'shortTime' }}
+                </td>
+                <td>{{ case.firstname | titlecase }} {{ case.surname | titlecase }}
+                </td>
+                <td>{{ case.phoneNumber }} </td>
+                <td>
+                    <a class="text-green" [routerLink]="['/states', case.state]">{{ case.state | stateFormat }}</a>
+                </td>
+                <td>{{ case.lga | titlecase }} LGA</td>
+                <td>{{ case.dateOfBirth | ageCalculate }} year(s) old</td>
+                <td class=" text-center pb-0 pt-2">
+                    <span
+                        [ngClass]="{'badge-warning':  case?.status  == statusData.isNew,
+                        'badge-info':  case?.status  == statusData.isContacted,
+                        'badge-dark bg-handy':  case?.status  == statusData.isConfirmed, 
+                        'badge-primary bg-green':  case?.status  == statusData.isQuarantined,  
+                        'badge-secondary':  case?.status  == statusData.isNotSick, 'badge-danger':  case?.status  == statusData.isFake}"
+                        class="badge badge-pill px-4 py-2 m-0">{{ case?.status |statusFormat }}
+                    </span>
+                </td>
+                <td class="py-0">
+                    <div class="d-flex justify-content-around my-1">
+                        <div [matMenuTriggerFor]="menu" matRipple matTooltip="Change case status?"
+                            matTooltipPosition="above" class="pointer action-edit p-2">
+                            <i class="fa fa-edit"></i>
+                        </div>
+
+                        <div (click)="onCaseDetails(case._id)" data-toggle="modal" data-target="#caseDetailsModal"
+                            matRipple matTooltip="See case details?" matTooltipPosition="above"
+                            class="pointer action-open p-2">
+                            <i class="fa fa-paper-plane"></i>
+                        </div>
+
+                        <div (click)="onDeleteDialog(case._id)" matRipple class="pointer action-delete p-2"
+                            matTooltip="Delete case?" matTooltipPosition="above">
+                            <i class="fa fa-trash"></i>
+                        </div>
+
+                        <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
+                            <ng-template matMenuContent>
+                                <div class="card-body text-center text-mute p-0">
+                                    <ul class="list-group list-group-flush">
+                                        <li *ngIf="case.status  !== statusData.isNew"
+                                            (click)="changeStatus(case._id, statusData.isNew)" matRipple matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To New</li>
+
+                                        <li *ngIf="case.status  !== statusData.isContacted"
+                                            (click)="changeStatus(case._id, statusData.isContacted)" matRipple matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Contacted</li>
+
+                                        <li *ngIf="case.status  !== statusData.isConfirmed"
+                                            (click)="changeStatus(case._id, statusData.isConfirmed)" matRipple matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Confirmed</li>
+
+                                        <li *ngIf="case.status  !== statusData.isQuarantined"
+                                            (click)="changeStatus(case._id, statusData.isQuarantined)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Quarantined</li>
+
+                                        <li *ngIf="case.status  !== statusData.isNotSick"
+                                            (click)="changeStatus(case._id, statusData.isNotSick)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Not Sick</li>
+
+                                        <li *ngIf="case.status  !== statusData.isFake"
+                                            (click)="changeStatus(case._id, statusData.isFake)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Fake</li>
+                                    </ul>
+                                </div>
+                            </ng-template>
+                        </mat-menu>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</ng-template>
+
+
+<ng-template [ngIf]="!isDesktopView">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let case of cases">
+            <div class="card text-muted handy-card mb-3">
+
+                <div class="card-body py-2">
+
+                    <div class="d-flex justify-content-between text-muted">
+                        <div (click)="onCaseDetails(case._id)" class="h5 mb-1 text-dark pointer">
+                            {{ case.firstname | titlecase }}
+                            {{ case.surname | titlecase }} <span>
+                                <i class="fa fa-launch"></i> </span>
+                        </div>
+                        <div class="ml-auto pointer" mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Actions"
+                            matTooltipPosition="left">
+                            <mat-icon>expand_more</mat-icon>
+                        </div>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <div>
+                                <div matTooltip="Change case status?" matTooltipPosition="before"
+                                    [matMenuTriggerFor]="statusChange" class="list-group-item my-ppointer"
+                                    mat-menu-item>
+                                    <mat-icon>edit</mat-icon>Change status
+                                </div>
+                                <!-- <div class="list-group-item" [routerLink]="['/customer/edit', case._id]" mat-menu-item>
+                                    <mat-icon>edit</mat-icon>Edit
+                                </div> -->
+                                <button (click)="onDeleteDialog(case._id)" class="list-group-item my-ppointer"
+                                    mat-menu-item>
+                                    <mat-icon>delete</mat-icon>Delete
+                                </button>
+                            </div>
+                        </mat-menu>
+                        <mat-menu #statusChange="matMenu">
+                            <ng-template matMenuContent>
+                                <div class="card-body text-center text-mute p-0">
+                                    <ul class="list-group list-group-flush">
+                                        <li *ngIf="case.status  !== statusData.isNew"
+                                            (click)="changeStatus(case._id, statusData.isNew)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To New</li>
+
+                                        <li *ngIf="case.status  !== statusData.isContacted"
+                                            (click)="changeStatus(case._id, statusData.isContacted)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Contacted</li>
+
+                                        <li *ngIf="case.status  !== statusData.isConfirmed"
+                                            (click)="changeStatus(case._id, statusData.isConfirmed)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Confirmed</li>
+
+                                        <li *ngIf="case.status  !== statusData.isQuarantined"
+                                            (click)="changeStatus(case._id, statusData.isQuarantined)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Quarantined</li>
+
+                                        <li *ngIf="case.status  !== statusData.isNotSick"
+                                            (click)="changeStatus(case._id, statusData.isNotSick)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Not Sick</li>
+
+                                        <li *ngIf="case.status  !== statusData.isFake"
+                                            (click)="changeStatus(case._id, statusData.isFake)" matRipple
+                                            class="list-group-item list-group-item-action pointer h6 py-3 mb-0">
+                                            To Fake</li>
+                                    </ul>
+                                </div>
+                            </ng-template>
+                        </mat-menu>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="h6">{{ case.state | stateFormat }}</div>
+                        <div class="h6">{{ case.lga | titlecase }} LGA</div>
+                    </div>
+
+                    <div class="d-flex py-0 justify-content-between">
+                        <div class="text-small mb-0">
+                            <span
+                                [ngClass]="{'badge-warning':  case?.status  == statusData.isNew,
+                            'badge-info':  case?.status  == statusData.isContacted,
+                            'badge-dark bg-handy':  case?.status  == statusData.isConfirmed, 
+                            'badge-primary bg-green':  case?.status  == statusData.isQuarantined,  
+                            'badge-secondary':  case?.status  == statusData.isNotSick, 'badge-danger':  case?.status  == statusData.isFake}"
+                                class="badge badge-pill px-4 py-2 m-0">{{ case?.status |statusFormat }}
+                            </span>
+                        </div>
+                        <div class="text-small">{{ case.dateOfBirth | ageCalculate }} year(s) old</div>
+                        <div class="text-small mb-0">{{ case.registeredAt | date:'mediumDate' }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+
+<div class="lead mt-4 text-muted font-italic d-flex justify-content-center" *ngIf="cases.length <= 0">No
+    case added yet</div>

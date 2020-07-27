@@ -1,0 +1,130 @@
+<div id="modalP" class="container text-muted pt-2">
+    <div class="d-flex justify-content-end px-3">
+        <div (click)="onCloseBottomSheet($event)" class="h6 pointer text-danger"><i class="fas fa-times"></i></div>
+    </div>
+    <hr class="m-0">
+
+    <div class="text-center pt-2 pb-3">
+        <!-- <div class="d-flex justify-content-center">
+                        <ngx-avatar size="50" name="{{ case?.firstname }}
+                        {{ case?.surname }}">
+                        </ngx-avatar>
+                    </div> -->
+        <div class="h5 text-green">{{ case?.firstname | titlecase }}
+            {{ case?.surname | titlecase }}
+        </div>
+
+        <div class="text-small font-weight-bold text-danger">{{ case?.caseId }}</div>
+    </div>
+
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Registered at</dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ case?.registeredAt | date:'longDate' }} at {{ case?.registeredAt | date:'mediumTime' }}
+            </div>
+        </dd>
+    </dl>
+    <hr *ngIf="printDateTime && printMode" class="m-0">
+    <dl *ngIf="printDateTime && printMode" class="row mb-0 pb-0">
+        <dt class="col-5 text-right">
+            <div class="text-small text-mute mt-1 pl-4">Printed at</div>
+        </dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ printDateTime | date:'longDate' }} at {{ printDateTime | date:'mediumTime' }}
+            </div>
+        </dd>
+    </dl>
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Status</dt>
+        <dd class="col-7 my-1">
+            <div>
+                <span [ngClass]="{'badge-warning':  case?.status  == 1,
+                            'badge-info':  case?.status  == 2,
+                            'badge-dark bg-handy':  case?.status  == 3, 
+                            'badge-primary bg-green':  case?.status  == 4,  
+                            'badge-secondary':  case?.status  == 5, 'badge-danger':  case?.status  == 6}"
+                    class="badge badge-pill px-4 py-1 m-0">{{ case?.status |statusFormat }}
+                </span>
+            </div>
+        </dd>
+    </dl>
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Phone number</dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ case?.phoneNumber }}
+            </div>
+        </dd>
+    </dl>
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-small text-mute text-right mt-1 pl-4">Date added</dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ case.state | stateFormat }} </div>
+        </dd>
+    </dl>
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-right">
+            <div class="text-small text-mute mt-1 pl-4">LGA</div>
+        </dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ case.lga | titlecase }} Local Government
+            </div>
+        </dd>
+    </dl>
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-right">
+            <div class="text-small text-mute mt-1 pl-4">Age</div>
+        </dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ case.dateOfBirth | ageCalculate }} year(s) old
+            </div>
+        </dd>
+    </dl>
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-right">
+            <div class="text-small text-mute mt-1 pl-4">Address</div>
+        </dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ case.address }}
+            </div>
+        </dd>
+    </dl>
+    <hr class="m-0">
+    <dl class="row mb-0 pb-0">
+        <dt class="col-5 text-right">
+            <div class="text-small text-mute mt-1 pl-4">Symptoms</div>
+        </dt>
+        <dd class="col-7">
+            <div class="text-small font-weight-bold mb-0 mt-1">
+                {{ case.symptoms }}
+            </div>
+        </dd>
+    </dl>
+
+    <hr class="m-0">
+</div>
+<div class="d-flex justify-content-end pb-4 px-3 pt-2">
+    <div *ngIf="printMode" class="d-flex p-0 m-0">
+        <div (click)="onPrintIMG('modalP')" class="h6 mb-0 px-3 text-green pointer">As Image</div>
+        <div (click)="onPrintPDF('modalP')" class="h6 mb-0 px-3 text-green pointer">As PDF</div>
+        <div (click)="onFooterMode()" class="h6 mb-0">
+            <i class="fa fa-times ml-5 text-danger pointer"></i>
+        </div>
+    </div>
+    <div *ngIf="!printMode" (click)="onFooterMode()" class="h6 p-0 m-0 action-edit pointer">
+        <i class="fa fa-print"></i>
+    </div>
+</div>

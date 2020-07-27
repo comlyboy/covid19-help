@@ -13,10 +13,6 @@ import { NavigationService } from 'src/app/shared/service/navigation.service';
 })
 export class CaseService {
 
-  private API_URL = environment;
-  private cases: ICase[] = [];
-  casse: ICase;
-
 
 
   constructor(
@@ -24,6 +20,16 @@ export class CaseService {
     public notificationService: NotificationService,
     public navigationService: NavigationService
   ) { }
+
+  private API_URL = environment;
+  private cases: ICase[] = [];
+  casse: ICase;
+
+  // ===========
+  private casesUpdated = new Subject<{
+    cases: ICase[],
+    totalCases: number
+  }>();
 
 
   addCase(
@@ -63,12 +69,6 @@ export class CaseService {
   getInputCase(phoneNumber: string) {
     return this.http.get<ICase>(`${this.API_URL._SERVER}case/verify/${phoneNumber}`);
   }
-
-  // ===========
-  private casesUpdated = new Subject<{
-    cases: ICase[],
-    totalCases: number
-  }>();
 
   getCasesUpdateListener() {
     return this.casesUpdated.asObservable();
@@ -111,7 +111,7 @@ export class CaseService {
           status
         }
       ).subscribe((result: { message: string }) => {
-        this.notificationService.smallSuccess(result.message);
+        this.notificationService.successMat(result.message);
         this.getCases(10, 1);
       });
   }

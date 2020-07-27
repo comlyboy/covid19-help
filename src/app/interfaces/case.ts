@@ -1,5 +1,6 @@
 export interface ICase {
     id?: string;
+    _id?: string;
     firstname: string;
     surname: string;
     phoneNumber: string;

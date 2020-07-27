@@ -15,6 +15,7 @@ import { AuthInterceptor } from './pages/auth/auth.interceptor';
 import { ErrorInterceptor } from './shared/interceptor/error-interceptor';
 import { AngularMaterialModule } from './shared/module/material.module';
 import { environment } from '../environments/environment';
+import { CaseDetailsModule } from './pages/case/case-details/case-details.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     AngularMaterialModule,
     ExportAsModule,
+    CaseDetailsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

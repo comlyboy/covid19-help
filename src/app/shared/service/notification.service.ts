@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -6,13 +8,15 @@ import Swal from 'sweetalert2';
 })
 export class NotificationService {
 
-  constructor() { }
+  constructor(
+    private snackBar: MatSnackBar
+  ) { }
 
 
   success(message: string) {
     const toast = Swal.mixin({
       toast: true,
-      position: 'top',
+      position: 'bottom',
       showConfirmButton: false,
       timer: 5000,
       grow: 'column'
@@ -26,7 +30,7 @@ export class NotificationService {
   smallSuccess(message: string) {
     const toast = Swal.mixin({
       toast: true,
-      position: 'top',
+      position: 'bottom',
       showConfirmButton: false,
       timer: 5000,
       grow: 'column'
@@ -82,6 +86,12 @@ export class NotificationService {
       text: 'Redirecting you to register page',
       timer: 7000
 
+    });
+  }
+
+  successMat(message: string) {
+    this.snackBar.open(message, '', {
+      duration: 4000,
     });
   }
 

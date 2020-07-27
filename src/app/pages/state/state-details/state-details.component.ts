@@ -22,7 +22,6 @@ export class StateDetailsComponent implements OnInit {
   stateId: string;
 
   cases: ICase[] = [];
-  case: ICase;
 
   totalCases = 0;
   totalNewCases = 0;
@@ -40,22 +39,6 @@ export class StateDetailsComponent implements OnInit {
     public route: ActivatedRoute
   ) { }
 
-
-  onDeleteDialog(caseId: string) {
-    this.dialogService.caseDeleteDialog(caseId);
-  }
-
-  onCloseModal() {
-    this.case = null;
-  }
-
-
-  onCaseDetails(caseId: string) {
-    this.caseService.getCaseDetails(caseId)
-      .subscribe(casesDetailsData => {
-        this.case = casesDetailsData;
-      });
-  }
 
   changeStatus(caseId: string, status: number) {
     this.caseService.changeCaseStatus(caseId, status);
@@ -93,7 +76,6 @@ export class StateDetailsComponent implements OnInit {
 
   ngOndestroy() {
     this.stateSub.unsubscribe();
-    this.case = null;
   }
 
 }

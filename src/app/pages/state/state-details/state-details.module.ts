@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { StateDetailsRoutingModule } from './state-details-routing.module';
 import { StateDetailsComponent } from './state-details.component';
-import { PipesModule } from 'src/app/pipes/pipes.module';
-import { AngularMaterialModule } from 'src/app/shared/module/material.module';
+import { PipesModule } from '../../../pipes/pipes.module';
+import { AngularMaterialModule } from '../../../shared/module/material.module';
+import { CaseListModule } from '../../../components/case-list/case-list.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AngularMaterialModule } from 'src/app/shared/module/material.module';
     CommonModule,
     PipesModule,
     StateDetailsRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    CaseListModule
   ]
 })
 export class StateDetailsModule { }

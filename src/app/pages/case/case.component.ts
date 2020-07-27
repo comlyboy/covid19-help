@@ -9,7 +9,6 @@ import { definedStatus } from '../../shared/helper/status';
 import { CaseService } from './case.service';
 import { ICase } from '../../interfaces/case';
 import { DialogService } from '../../shared/service/dialog.service';
-import { PrintService } from 'src/app/shared/service/print.service';
 
 @Component({
   selector: 'app-case',
@@ -17,13 +16,7 @@ import { PrintService } from 'src/app/shared/service/print.service';
   styleUrls: ['./case.component.scss']
 })
 export class CaseComponent implements OnInit {
-  printMode = false;
-  printDateTime: string | number = null;
-
-  statusData = definedStatus;
-
   totalCases = 0;
-  case: ICase;
   cases: ICase[] = [];
 
   casesPerPage = 10;
@@ -35,14 +28,7 @@ export class CaseComponent implements OnInit {
   constructor(
     private caseService: CaseService,
     private dialogService: DialogService,
-    private printService: PrintService
   ) { }
-
-
-  onFooterMode() {
-    this.printMode = !this.printMode;
-  }
-
 
   onDeleteDialog(caseId: string) {
     this.dialogService.caseDeleteDialog(caseId);
@@ -52,46 +38,6 @@ export class CaseComponent implements OnInit {
   onSearch(form: NgForm) {
 
   }
-
-  onCloseModal() {
-    this.case = null;
-  }
-
-
-  onCaseDetails(caseId: string) {
-    this.caseService.getCaseDetails(caseId)
-      .subscribe(casesDetailsData => {
-        this.case = casesDetailsData;
-      });
-  }
-
-  changeStatus(caseId: string, status: number) {
-    this.caseService.changeCaseStatus(caseId, status);
-  }
-
-
-  onPrintIMG(classId: string) {
-    this.printDateTime = Date.now();
-    setTimeout(() => {
-      this.printService.printPageImage(classId);
-    }, 500);
-    setTimeout(() => {
-      this.printMode = false;
-      this.printDateTime = null;
-    }, 5000);
-  }
-
-  onPrintPDF(classId: string) {
-    this.printDateTime = Date.now();
-    setTimeout(() => {
-      this.printService.printPagePDF(classId);
-    }, 500);
-    setTimeout(() => {
-      this.printMode = false;
-      this.printDateTime = null;
-    }, 5000);
-  }
-
 
 
   onChangePage(pageData: PageEvent) {
@@ -118,7 +64,6 @@ export class CaseComponent implements OnInit {
 
   ngOndestroy() {
     this.caseSub.unsubscribe();
-    this.case = null;
   }
 
 }

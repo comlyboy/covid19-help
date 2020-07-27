@@ -1,0 +1,62 @@
+.action-edit:hover {
+    border-radius: 50% !important;
+    background-color: #edfaf0 !important;
+    color: #12b886 !important;
+}
+
+.action-open:hover {
+    border-radius: 50% !important;
+    background-color: #edf1fa !important;
+    color: #4a6ee0 !important;
+}
+
+.action-delete:hover {
+    border-radius: 50% !important;
+    background-color: #faebec !important;
+    color: #dc3545 !important;
+}
+
+
+.left-border-primary {
+    border-left: solid 5px #4a6ee0 !important;
+}
+
+.left-border-primary:hover {
+    transition: ease-in .3s;
+    border: solid 1px #4a6ee0 !important;
+    border-left: solid 5px #4a6ee0 !important;
+}
+
+.left-border-secondary {
+    border-left: solid 5px #e724bd !important;
+}
+
+.left-border-success {
+    border-left: solid 5px #12b886 !important;
+}
+
+.left-border-success:hover {
+    transition: ease-in .3s;
+    border: solid 1px #12b886 !important;
+    border-left: solid 5px #12b886 !important;
+}
+
+.left-border-danger {
+    border-left: solid 5px #b64238 !important;
+}
+
+.left-border-danger:hover {
+    transition: ease-in .3s;
+    border: solid 1px #b64238 !important;
+    border-left: solid 5px #b64238 !important;
+}
+
+.left-border-dark {
+    border-left: solid 5px #6c757d !important;
+}
+
+.left-border-dark:hover {
+    transition: ease-in .3s;
+    border: solid 1px #6c757d !important;
+    border-left: solid 5px #6c757d !important;
+}
