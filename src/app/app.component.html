@@ -1,6 +1,5 @@
-<button *ngIf="!userIsAuthenticated" class="btn btn-green float bg-green">
-    <a class="text-white" href="https://covid19-global-data.netlify.com/" target="_blank" rel="noopener noreferrer"><i
-            class="fa fa-chart-bar"></i></a>
+<button *ngIf="!userIsAuthenticated" href="https://covid19-global-data.netlify.com/" target="_blank" rel="noopener noreferrer" class="btn btn-green float bg-green">
+    <a class="text-white"><i class="fa fa-chart-bar"></i></a>
 </button>
 
 
@@ -14,19 +13,19 @@
         <ul *ngIf="userIsAuthenticated" class="navbar-nav ml-auto">
 
             <li class="px-2">
-                <a class="h6 navi-link  mb-0" routerLink="/dashboard" routerLinkActive="current">
+                <a class="h6 navi-link mb-0" routerLink="/dashboard" routerLinkActive="current">
                     <i class="fa fa-tachometer-alt mr-2"></i>Dashboard
                 </a>
             </li>
 
             <li class="px-2">
-                <a class="h6 navi-link  mb-0" routerLink="/cases" routerLinkActive="current">
+                <a class="h6 navi-link mb-0" routerLink="/cases" routerLinkActive="current">
                     <i class="fas fa-head-side-cough mr-2"></i>Cases
                 </a>
             </li>
 
             <li class="px-2">
-                <a class="h6 navi-link  mb-0" routerLink="/states" routerLinkActive="current">
+                <a class="h6 navi-link mb-0" routerLink="/states" routerLinkActive="current">
                     <i class="fas fa-flag mr-2"></i>States
                 </a>
             </li>
@@ -34,6 +33,9 @@
         </ul>
 
 
+        <div *ngIf="!userIsAuthenticated" routerLink="/auth" class="h6 mb-0 text-green pointer ml-auto mr-3">
+          Login
+        </div>
 
         <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h4 text-green mb-0 ml-auto mr-3">
             <i class="fa fa-user-circle"></i>
