@@ -60,7 +60,7 @@
 
 <nav class="d-sm-block d-lg-none d-xl-none toolbar bg-white">
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between align-items-center">
         <div class="navbar-brand text-handy d-flex pb-0 mr-0">
             <div class="h5 text-green">NCDC-help</div>
         </div>
@@ -83,7 +83,7 @@
         </div>
 
         <div *ngIf="userIsAuthenticated" class="d-flex">
-            <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h4 text-green mb-0 ml-auto mt-1">
+            <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h4 text-green mb-0 ml-auto">
                 <i class="fa fa-user-circle"></i>
             </div>
             <mat-menu #menu="matMenu" xPosition="before">
