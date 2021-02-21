@@ -77,6 +77,10 @@
             </a>
 
         </div>
+      
+        <div *ngIf="!userIsAuthenticated" routerLink="/auth" class="h6 mb-0 text-green pointer ml-auto mr-3">
+          Login
+        </div>
 
         <div *ngIf="userIsAuthenticated" class="d-flex">
             <div *ngIf="userIsAuthenticated" [matMenuTriggerFor]="menu" class="h4 text-green mb-0 ml-auto mt-1">
